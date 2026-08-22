@@ -66,7 +66,7 @@
 <main>
   <form id="requestForm">
     <h1>Tell us what you need</h1>
-    <p class="intro">Fill this in once — no back-and-forth. A Star Rays representative will reach out shortly after you submit.</p>
+    <p class="intro">Fill this in once — our rep will contact you shortly after you submit.</p>
 
     <div class="field">
       <label>Type of staff needed <span class="req">*</span></label>
@@ -127,6 +127,22 @@
       <div class="field">
         <label>Religion preference (optional)</label>
         <input type="text" name="religionPref" placeholder="e.g. No preference" />
+      </div>
+
+      <div class="field">
+        <label>Number of children / household size</label>
+        <input type="text" name="householdSize" placeholder="e.g. 2 children, ages 3 and 6" />
+      </div>
+
+      <div id="houseTypeFieldDomestic" class="field hidden-section">
+        <label>House type (for live-in)</label>
+        <div class="chip-row" data-group="houseTypeDomestic">
+          <button type="button" class="chip" data-value="Flat">Flat</button>
+          <button type="button" class="chip" data-value="Bungalow">Bungalow</button>
+          <button type="button" class="chip" data-value="Duplex">Duplex</button>
+          <button type="button" class="chip" data-value="Terrace">Terrace</button>
+          <button type="button" class="chip" data-value="Other">Other</button>
+        </div>
       </div>
     </div>
 
@@ -203,7 +219,7 @@
 
     <div class="assurance">
       <span>🛡️</span>
-      <div>Every Star Rays placement is screened, guarantor-verified, and medically tested before your first day together.</div>
+      <div>All our placements are thoroughly screened before their resumption.</div>
     </div>
   </form>
 
@@ -221,7 +237,7 @@ const DOMESTIC_TYPES = ["House Assistant", "Nanny"];
 
 const state = {
   staffType: "", arrangement: "", paymentPlan: "", ageRange: "",
-  houseType: "", cleaningFrequency: ""
+  houseType: "", cleaningFrequency: "", houseTypeDomestic: ""
 };
 
 const PAYMENT_PLANS = {
@@ -287,6 +303,9 @@ function render() {
   domesticFields.classList.toggle("show", DOMESTIC_TYPES.includes(state.staffType));
   cleaningFields.classList.toggle("show", state.staffType === "Recurring Cleaning");
 
+  const houseTypeFieldDomestic = document.getElementById("houseTypeFieldDomestic");
+  houseTypeFieldDomestic.classList.toggle("show", DOMESTIC_TYPES.includes(state.staffType) && state.arrangement === "Live-in");
+
   if (DOMESTIC_TYPES.includes(state.staffType) && state.arrangement) {
     domesticNote.textContent = priceNoteFor(state.staffType, state.arrangement);
     domesticNote.classList.add("show");
@@ -349,6 +368,8 @@ form.addEventListener("submit", async (e) => {
     "Language preference": fd.get("languagePref") || "",
     "Tribe preference": fd.get("tribePref") || "",
     "Religion preference": fd.get("religionPref") || "",
+    "Household size / children": fd.get("householdSize") || "",
+    "House type (live-in)": state.houseTypeDomestic || "",
     "House structure": state.houseType || "",
     "Cleaning frequency": state.cleaningFrequency || "",
     "Full name": fullName,
@@ -397,4 +418,4 @@ document.getElementById("resetBtn").addEventListener("click", () => {
 </script>
 
 </body>
-  </html>
+</html>
