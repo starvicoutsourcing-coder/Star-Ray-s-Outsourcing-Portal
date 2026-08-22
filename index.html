@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Star Rays Outsourcing — Request Staff</title>
+<meta name="description" content="Request staff from Star Rays Outsourcing. Fill one form, no back-and-forth." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --emerald:#1A4A3A; --emerald-deep:#123128; --gold:#C9A84C; --gold-soft:#E4D4A6;
+    --cream:#F5F0E8; --charcoal:#2D2D2D; --rust:#B0523F; --line:#DDD3C0;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--charcoal);font-family:'Work Sans',sans-serif;}
+  header{background:var(--emerald);color:var(--cream);padding:18px 20px;display:flex;align-items:center;gap:12px;}
+  .seal{width:38px;height:38px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .seal-inner{width:29px;height:29px;border-radius:50%;border:1px dashed var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;color:var(--gold);font-weight:600;font-size:12px;}
+  .brand-name{font-family:'Fraunces',serif;font-size:18px;font-weight:600;line-height:1.1;}
+  .brand-sub{font-size:11px;color:var(--gold-soft);letter-spacing:0.04em;margin-top:2px;}
+  main{max-width:620px;margin:0 auto;padding:28px 18px 60px;}
+  h1{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--emerald);margin:0 0 6px;}
+  .intro{font-size:13.5px;color:#5c5c5c;line-height:1.5;margin:0 0 22px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+  .req{color:var(--rust);}
+  input,select,textarea{width:100%;padding:12px 14px;border-radius:9px;border:1.5px solid var(--line);font-family:'Work Sans',sans-serif;font-size:15px;color:var(--charcoal);background:#fff;outline:none;}
+  textarea{resize:vertical;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{padding:9px 15px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--charcoal);font-family:'Work Sans',sans-serif;font-size:13.5px;font-weight:600;cursor:pointer;}
+  .chip.active{background:var(--emerald);border-color:var(--emerald);color:var(--cream);}
+  .price-note{background:var(--gold-soft);color:var(--emerald-deep);border-radius:10px;padding:11px 14px;font-size:13px;font-weight:600;margin-bottom:18px;display:none;}
+  .price-note.show{display:block;}
+  .plan-card{background:#fff;border:1.5px solid var(--gold);border-radius:12px;padding:14px 16px;margin-bottom:18px;display:none;}
+  .plan-card.show{display:block;}
+  .plan-title{font-weight:700;font-size:14px;color:var(--emerald);margin-bottom:6px;}
+  .plan-desc{font-size:12.5px;color:#5c5c5c;line-height:1.6;}
+  .two-col{display:flex;gap:12px;}
+  .two-col > div{flex:1;}
+  .error-box{background:#FBEAE6;color:var(--rust);padding:11px 14px;border-radius:9px;font-size:13.5px;margin-bottom:16px;font-weight:600;display:none;}
+  .error-box.show{display:block;}
+  button[type=submit]{width:100%;background:var(--emerald);color:var(--cream);border:none;border-radius:10px;padding:15px 22px;font-family:'Work Sans',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;}
+  button[type=submit]:disabled{opacity:0.6;cursor:not-allowed;}
+  .assurance{display:flex;gap:10px;align-items:flex-start;margin-top:20px;background:#fff;border:1px solid #E7DFCF;border-radius:12px;padding:14px;font-size:12.5px;color:#5c5c5c;line-height:1.5;}
+  .hidden-section{display:none;}
+  .hidden-section.show{display:block;}
+  #confirmation{display:none;text-align:center;padding:50px 10px;}
+  #confirmation.show{display:block;}
+  .check-circle{width:62px;height:62px;border-radius:50%;background:var(--emerald);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:var(--cream);font-size:28px;}
+  #confirmation h2{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--emerald);margin-bottom:10px;}
+  #confirmation p{font-size:14.5px;color:#5c5c5c;line-height:1.6;max-width:380px;margin:0 auto 26px;}
+  .ghost-btn{background:transparent;color:var(--emerald);border:1.5px solid var(--emerald);border-radius:10px;padding:11px 20px;font-family:'Work Sans',sans-serif;font-weight:600;font-size:14px;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="seal"><div class="seal-inner">SR</div></div>
+  <div>
+    <div class="brand-name">Star Rays Outsourcing</div>
+    <div class="brand-sub">Request Staff</div>
+  </div>
+</header>
+
+<main>
+  <form id="requestForm">
+    <h1>Tell us what you need</h1>
+    <p class="intro">Fill this in once — no back-and-forth. A Star Rays representative will reach out shortly after you submit.</p>
+
+    <div class="field">
+      <label>Type of staff needed <span class="req">*</span></label>
+      <div class="chip-row" data-group="staffType">
+        <button type="button" class="chip" data-value="House Assistant">House Assistant</button>
+        <button type="button" class="chip" data-value="Nanny">Nanny</button>
+        <button type="button" class="chip" data-value="Administrative / Office Staff">Administrative / Office Staff</button>
+        <button type="button" class="chip" data-value="Recurring Cleaning">Recurring Cleaning</button>
+        <button type="button" class="chip" data-value="Other">Other</button>
+      </div>
+    </div>
+
+    <!-- Domestic-only fields -->
+    <div id="domesticFields" class="hidden-section">
+      <div class="field">
+        <label>Live-in or live-out?</label>
+        <div class="chip-row" data-group="arrangement">
+          <button type="button" class="chip" data-value="Live-in">Live-in</button>
+          <button type="button" class="chip" data-value="Live-out">Live-out</button>
+          <button type="button" class="chip" data-value="Either">Either</button>
+        </div>
+      </div>
+      <div id="domesticPriceNote" class="price-note"></div>
+
+      <div class="field">
+        <label>Payment plan <span class="req">*</span></label>
+        <div class="chip-row" data-group="paymentPlan">
+          <button type="button" class="chip" data-value="Retainership">Retainership</button>
+          <button type="button" class="chip" data-value="One-off">One-off</button>
+        </div>
+      </div>
+      <div id="planCard" class="plan-card">
+        <div class="plan-title" id="planTitle"></div>
+        <div class="plan-desc" id="planDesc"></div>
+      </div>
+
+      <div class="field">
+        <label>Preferred age range</label>
+        <div class="chip-row" data-group="ageRange">
+          <button type="button" class="chip" data-value="18–25">18–25</button>
+          <button type="button" class="chip" data-value="26–35">26–35</button>
+          <button type="button" class="chip" data-value="36–45">36–45</button>
+          <button type="button" class="chip" data-value="46+">46+</button>
+          <button type="button" class="chip" data-value="No preference">No preference</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Language preference</label>
+        <input type="text" name="languagePref" placeholder="e.g. English, Yoruba, Igbo, Hausa, Pidgin" />
+      </div>
+
+      <div class="field">
+        <label>Tribe preference (optional)</label>
+        <input type="text" name="tribePref" placeholder="e.g. No preference" />
+      </div>
+
+      <div class="field">
+        <label>Religion preference (optional)</label>
+        <input type="text" name="religionPref" placeholder="e.g. No preference" />
+      </div>
+    </div>
+
+    <!-- Cleaning-only fields -->
+    <div id="cleaningFields" class="hidden-section">
+      <div class="field">
+        <label>House structure</label>
+        <div class="chip-row" data-group="houseType">
+          <button type="button" class="chip" data-value="Flat">Flat</button>
+          <button type="button" class="chip" data-value="Bungalow">Bungalow</button>
+          <button type="button" class="chip" data-value="Duplex">Duplex</button>
+          <button type="button" class="chip" data-value="Terrace">Terrace</button>
+          <button type="button" class="chip" data-value="Other">Other</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Cleaning frequency</label>
+        <div class="chip-row" data-group="cleaningFrequency">
+          <button type="button" class="chip" data-value="Monthly">Monthly</button>
+          <button type="button" class="chip" data-value="Daily">Daily</button>
+          <button type="button" class="chip" data-value="One-off">One-off</button>
+        </div>
+      </div>
+      <div id="cleaningPriceNote" class="price-note"></div>
+    </div>
+
+    <!-- Flat pricing note for Admin/Other -->
+    <div id="flatPriceNote" class="price-note"></div>
+
+    <div class="field">
+      <label>Your full name <span class="req">*</span></label>
+      <input type="text" name="fullName" placeholder="e.g. Amaka Johnson" required />
+    </div>
+
+    <div class="field">
+      <label>Phone number <span class="req">*</span></label>
+      <input type="tel" name="phone" placeholder="e.g. 0803 000 0000" required />
+    </div>
+
+    <div class="field">
+      <label>Email (optional)</label>
+      <input type="email" name="email" placeholder="you@email.com" />
+    </div>
+
+    <div class="field">
+      <label>Location / area <span class="req">*</span></label>
+      <input type="text" name="location" placeholder="e.g. Lekki, Lagos" required />
+    </div>
+
+    <div class="two-col">
+      <div class="field">
+        <label>Number needed</label>
+        <input type="number" name="numStaff" min="1" placeholder="1" />
+      </div>
+      <div class="field">
+        <label>Preferred start date</label>
+        <input type="date" name="startDate" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Budget range</label>
+      <input type="text" name="budget" placeholder="e.g. ₦100,000–₦120,000/month" />
+    </div>
+
+    <div class="field">
+      <label>Anything else we should know?</label>
+      <textarea name="details" rows="3" placeholder="Special requirements, household size, working hours, etc."></textarea>
+    </div>
+
+    <div id="errorBox" class="error-box"></div>
+
+    <button type="submit" id="submitBtn">Submit Request</button>
+
+    <div class="assurance">
+      <span>🛡️</span>
+      <div>Every Star Rays placement is screened, guarantor-verified, and medically tested before your first day together.</div>
+    </div>
+  </form>
+
+  <div id="confirmation">
+    <div class="check-circle">✓</div>
+    <h2>Thank you.</h2>
+    <p>Your request has been received. A Star Rays representative will contact you shortly.</p>
+    <button class="ghost-btn" id="resetBtn">Submit another request</button>
+  </div>
+</main>
+
+<script>
+const FORM_ENDPOINT = "https://formspree.io/f/xaewkjbd";
+const DOMESTIC_TYPES = ["House Assistant", "Nanny"];
+
+const state = {
+  staffType: "", arrangement: "", paymentPlan: "", ageRange: "",
+  houseType: "", cleaningFrequency: ""
+};
+
+const PAYMENT_PLANS = {
+  "Retainership": {
+    label: "Retainership Fee — ₦120,000",
+    desc: "Covers candidate recruitment, background verification, and pre-employment medical examination. Valid for 1 year from engagement. If a placed staff member is unsuitable, a replacement is provided within 2–4 weeks, up to 2 replacements within the year. The agency handles all salary disbursement and staff management throughout. Applies only to this request — further requests attract standard fees, negotiable on discussion."
+  },
+  "One-off": {
+    label: "One-Off Fee — ₦100,000",
+    desc: "Covers candidate recruitment, background verification, and pre-employment medical examination. Placement coverage for 3 months, with 1 replacement if needed. After placement, staff supervision and day-to-day management is the client's responsibility."
+  }
+};
+
+const FLAT_PRICING = {
+  "Administrative / Office Staff": "Recruitment fee: 6% of annual gross salary + 7.5% VAT",
+  "Other": "We'll confirm pricing with you once we understand the role."
+};
+
+function priceNoteFor(staffType, arrangement, houseType) {
+  if (staffType === "House Assistant") {
+    return arrangement === "Live-out"
+      ? "₦100,000/month and above — live-out includes a transport allowance."
+      : "₦80,000/month and above — rate depends on the helper's age and experience.";
+  }
+  if (staffType === "Nanny") {
+    return arrangement === "Live-out"
+      ? "₦100,000/month — go-and-come includes a transport allowance."
+      : "₦90,000/month and above — rate depends on the nanny's age and experience.";
+  }
+  if (staffType === "Recurring Cleaning") {
+    if (arrangement === "Monthly") {
+      return houseType === "Flat"
+        ? "₦85,000/month (8 visits) for flats."
+        : "Monthly rate is subject to assessment for this house structure.";
+    }
+    if (arrangement === "Daily") return "Daily rate is subject to assessment of the apartment.";
+    if (arrangement === "One-off") return "One-off cleaning — we'll confirm a quote based on house size and condition.";
+    return null;
+  }
+  return FLAT_PRICING[staffType] || null;
+}
+
+document.querySelectorAll(".chip-row").forEach(row => {
+  const group = row.dataset.group;
+  row.querySelectorAll(".chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      row.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      state[group] = chip.dataset.value;
+      render();
+    });
+  });
+});
+
+function render() {
+  const domesticFields = document.getElementById("domesticFields");
+  const cleaningFields = document.getElementById("cleaningFields");
+  const flatNote = document.getElementById("flatPriceNote");
+  const domesticNote = document.getElementById("domesticPriceNote");
+  const cleaningNote = document.getElementById("cleaningPriceNote");
+  const planCard = document.getElementById("planCard");
+
+  domesticFields.classList.toggle("show", DOMESTIC_TYPES.includes(state.staffType));
+  cleaningFields.classList.toggle("show", state.staffType === "Recurring Cleaning");
+
+  if (DOMESTIC_TYPES.includes(state.staffType) && state.arrangement) {
+    domesticNote.textContent = priceNoteFor(state.staffType, state.arrangement);
+    domesticNote.classList.add("show");
+  } else {
+    domesticNote.classList.remove("show");
+  }
+
+  if (state.paymentPlan && PAYMENT_PLANS[state.paymentPlan]) {
+    document.getElementById("planTitle").textContent = PAYMENT_PLANS[state.paymentPlan].label;
+    document.getElementById("planDesc").textContent = PAYMENT_PLANS[state.paymentPlan].desc;
+    planCard.classList.add("show");
+  } else {
+    planCard.classList.remove("show");
+  }
+
+  if (state.staffType === "Recurring Cleaning" && state.cleaningFrequency) {
+    cleaningNote.textContent = priceNoteFor(state.staffType, state.cleaningFrequency, state.houseType);
+    cleaningNote.classList.add("show");
+  } else {
+    cleaningNote.classList.remove("show");
+  }
+
+  if (state.staffType && !DOMESTIC_TYPES.includes(state.staffType) && state.staffType !== "Recurring Cleaning") {
+    const note = priceNoteFor(state.staffType);
+    if (note) { flatNote.textContent = note; flatNote.classList.add("show"); }
+  } else {
+    flatNote.classList.remove("show");
+  }
+}
+
+const form = document.getElementById("requestForm");
+const errorBox = document.getElementById("errorBox");
+const submitBtn = document.getElementById("submitBtn");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  errorBox.classList.remove("show");
+
+  const fd = new FormData(form);
+  const fullName = fd.get("fullName")?.trim();
+  const phone = fd.get("phone")?.trim();
+  const location = fd.get("location")?.trim();
+
+  if (!state.staffType || !fullName || !phone || !location) {
+    errorBox.textContent = "Please fill in staff type, your name, phone number, and location — the rest is optional.";
+    errorBox.classList.add("show");
+    return;
+  }
+  if (DOMESTIC_TYPES.includes(state.staffType) && !state.paymentPlan) {
+    errorBox.textContent = "Please choose a payment plan — Retainership or One-off.";
+    errorBox.classList.add("show");
+    return;
+  }
+
+  const payload = {
+    "Staff type": state.staffType,
+    "Arrangement": state.arrangement || "",
+    "Payment plan": state.paymentPlan ? PAYMENT_PLANS[state.paymentPlan].label : "",
+    "Age preference": state.ageRange || "",
+    "Language preference": fd.get("languagePref") || "",
+    "Tribe preference": fd.get("tribePref") || "",
+    "Religion preference": fd.get("religionPref") || "",
+    "House structure": state.houseType || "",
+    "Cleaning frequency": state.cleaningFrequency || "",
+    "Full name": fullName,
+    "Phone": phone,
+    "Email": fd.get("email") || "",
+    "Location": location,
+    "Number needed": fd.get("numStaff") || "",
+    "Preferred start date": fd.get("startDate") || "",
+    "Budget range": fd.get("budget") || "",
+    "Notes": fd.get("details") || "",
+    "_subject": "New Star Rays staffing request: " + state.staffType
+  };
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Submitting…";
+
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Accept": "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    if (res.ok) {
+      form.style.display = "none";
+      document.getElementById("confirmation").classList.add("show");
+    } else {
+      throw new Error("Submission failed");
+    }
+  } catch (err) {
+    errorBox.textContent = "Something went wrong sending your request. Please try again, or contact us directly on 07032368163.";
+    errorBox.classList.add("show");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Submit Request";
+  }
+});
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+  form.reset();
+  Object.keys(state).forEach(k => state[k] = "");
+  document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+  render();
+  document.getElementById("confirmation").classList.remove("show");
+  form.style.display = "block";
+});
+</script>
+
+</body>
+  </html>
