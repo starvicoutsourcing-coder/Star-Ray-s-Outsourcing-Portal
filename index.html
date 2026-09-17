@@ -134,6 +134,11 @@
         <input type="text" name="householdSize" placeholder="e.g. 2 children, ages 3 and 6" />
       </div>
 
+      <div class="field">
+        <label>Any special needs child? (optional)</label>
+        <input type="text" name="specialNeeds" placeholder="e.g. No, or describe briefly" />
+      </div>
+
       <div id="houseTypeFieldDomestic" class="field hidden-section">
         <label>House type (for live-in)</label>
         <div class="chip-row" data-group="houseTypeDomestic">
@@ -143,6 +148,14 @@
           <button type="button" class="chip" data-value="Terrace">Terrace</button>
           <button type="button" class="chip" data-value="Other">Other</button>
         </div>
+      </div>
+    </div>
+
+    <!-- Office-only fields -->
+    <div id="officeFields" class="hidden-section">
+      <div class="field">
+        <label>Office address</label>
+        <input type="text" name="officeAddress" placeholder="e.g. 12 Admiralty Way, Lekki Phase 1" />
       </div>
     </div>
 
@@ -295,6 +308,7 @@ document.querySelectorAll(".chip-row").forEach(row => {
 function render() {
   const domesticFields = document.getElementById("domesticFields");
   const cleaningFields = document.getElementById("cleaningFields");
+  const officeFields = document.getElementById("officeFields");
   const flatNote = document.getElementById("flatPriceNote");
   const domesticNote = document.getElementById("domesticPriceNote");
   const cleaningNote = document.getElementById("cleaningPriceNote");
@@ -302,6 +316,7 @@ function render() {
 
   domesticFields.classList.toggle("show", DOMESTIC_TYPES.includes(state.staffType));
   cleaningFields.classList.toggle("show", state.staffType === "Recurring Cleaning");
+  officeFields.classList.toggle("show", state.staffType === "Administrative / Office Staff");
 
   const houseTypeFieldDomestic = document.getElementById("houseTypeFieldDomestic");
   houseTypeFieldDomestic.classList.toggle("show", DOMESTIC_TYPES.includes(state.staffType) && state.arrangement === "Live-in");
@@ -369,7 +384,9 @@ form.addEventListener("submit", async (e) => {
     "Tribe preference": fd.get("tribePref") || "",
     "Religion preference": fd.get("religionPref") || "",
     "Household size / children": fd.get("householdSize") || "",
+    "Special needs child": fd.get("specialNeeds") || "",
     "House type (live-in)": state.houseTypeDomestic || "",
+    "Office address": fd.get("officeAddress") || "",
     "House structure": state.houseType || "",
     "Cleaning frequency": state.cleaningFrequency || "",
     "Full name": fullName,
