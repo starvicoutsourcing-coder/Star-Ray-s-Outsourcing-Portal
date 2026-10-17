@@ -285,8 +285,9 @@ form.addEventListener("submit", async (e) => {
       body: JSON.stringify(payload)
     });
     if (res.ok) {
+      const hr = new Date().getHours(); const greeting = hr < 12 ? "Good morning ma/sir" : hr < 17 ? "Good afternoon ma/sir" : "Good evening ma/sir";
       const waText = encodeURIComponent(
-        "Hi, I just submitted my job application (" + state.jobType + ") as " + fullName + ". Here's my photo:"
+        greeting + ", I just submitted my job application (" + state.jobType + ") as " + fullName + ". Here's my photo:"
       );
       document.getElementById("whatsappBtn").href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + waText;
       form.style.display = "none";
