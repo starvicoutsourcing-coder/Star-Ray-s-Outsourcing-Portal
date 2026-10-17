@@ -1,308 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Star Rays Outsourcing — Job Seekers Form</title>
-<meta name="description" content="Apply to work with Star Rays Outsourcing." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --emerald:#1A4A3A; --emerald-deep:#123128; --gold:#C9A84C; --gold-soft:#E4D4A6;
-    --cream:#F5F0E8; --charcoal:#2D2D2D; --rust:#B0523F; --line:#DDD3C0;
-  }
-  *{box-sizing:border-box;}
-  body{margin:0;background:var(--cream);color:var(--charcoal);font-family:'Work Sans',sans-serif;}
-  header{background:var(--emerald);color:var(--cream);padding:18px 20px;display:flex;align-items:center;gap:12px;}
-  .seal{width:38px;height:38px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .seal-inner{width:29px;height:29px;border-radius:50%;border:1px dashed var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;color:var(--gold);font-weight:600;font-size:12px;}
-  .brand-name{font-family:'Fraunces',serif;font-size:18px;font-weight:600;line-height:1.1;}
-  .brand-sub{font-size:11px;color:var(--gold-soft);letter-spacing:0.04em;margin-top:2px;}
-  main{max-width:620px;margin:0 auto;padding:28px 18px 60px;}
-  h1{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--emerald);margin:0 0 6px;}
-  .intro{font-size:13.5px;color:#5c5c5c;line-height:1.5;margin:0 0 22px;}
-  .field{margin-bottom:18px;}
-  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
-  .req{color:var(--rust);}
-  input,select,textarea{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:9px;border:1.5px solid var(--line);font-family:'Work Sans',sans-serif;font-size:15px;color:var(--charcoal);background:#fff;outline:none;}
-  textarea{resize:vertical;}
-  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
-  .chip{padding:9px 15px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--charcoal);font-family:'Work Sans',sans-serif;font-size:13.5px;font-weight:600;cursor:pointer;}
-  .chip.active{background:var(--emerald);border-color:var(--emerald);color:var(--cream);}
-  .notice{background:var(--gold-soft);color:var(--emerald-deep);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.5;margin-bottom:18px;}
-  .notice b{display:block;margin-bottom:3px;}
-  .checkbox-field{display:flex;align-items:flex-start;gap:10px;background:#fff;border:1px solid #E7DFCF;border-radius:10px;padding:13px 14px;margin-bottom:18px;}
-  .checkbox-field input{width:auto;margin-top:2px;flex-shrink:0;}
-  .checkbox-field label{font-size:13px;color:#5c5c5c;line-height:1.5;font-weight:500;}
-  .two-col{display:flex;gap:12px;}
-  .two-col > div{flex:1;}
-  .error-box{background:#FBEAE6;color:var(--rust);padding:11px 14px;border-radius:9px;font-size:13.5px;margin-bottom:16px;font-weight:600;display:none;}
-  .error-box.show{display:block;}
-  button[type=submit]{width:100%;background:var(--emerald);color:var(--cream);border:none;border-radius:10px;padding:15px 22px;font-family:'Work Sans',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;}
-  button[type=submit]:disabled{opacity:0.6;cursor:not-allowed;}
-  .hidden-section{display:none;}
-  .hidden-section.show{display:block;}
-  #confirmation{display:none;text-align:center;padding:40px 10px;}
-  #confirmation.show{display:block;}
-  .check-circle{width:62px;height:62px;border-radius:50%;background:var(--emerald);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:var(--cream);font-size:28px;}
-  #confirmation h2{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--emerald);margin-bottom:10px;}
-  #confirmation p{font-size:14.5px;color:#5c5c5c;line-height:1.6;max-width:400px;margin:0 auto 22px;}
-  .whatsapp-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border:none;border-radius:10px;padding:14px 24px;font-family:'Work Sans',sans-serif;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Rays - Job Seekers Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header>
-  <div class="seal"><div class="seal-inner">SR</div></div>
-  <div>
-    <div class="brand-name">Star Rays Outsourcing</div>
-    <div class="brand-sub">Job Seekers Form</div>
-  </div>
-</header>
+    <div class="form-container">
+        <!-- STEP 1: FORM TITLE -->
+        <header>
+            <h1>STAR RAYS OUTSOURCING</h1>
+            <h2>JOB SEEKERS REGISTRATION FORM</h2>
+            <p class="tagline">Helping Businesses Hire Right</p>
+            <p class="instruction">Please complete this form accurately to enable us to consider you for suitable job opportunities.</p>
+        </header>
 
-<main>
-  <form id="applyForm">
-    <h1>Apply to work with us</h1>
-    <p class="intro">Fill this in once — our team will reach out after reviewing your application.</p>
+        <!-- Replace YOUR_FORM_ID with your Formspree/Web3Forms endpoint -->
+        <form id="applicantForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
+            
+            <!-- STEP 2: PERSONAL INFORMATION -->
+            <fieldset>
+                <legend>Personal Information</legend>
+                
+                <label>1. Full Name *</label>
+                <input type="text" name="Full_Name" required>
 
-    <div class="notice">
-      <b>📷 Photo required</b>
-      Please send a clear, unedited, filter-free photo of yourself on WhatsApp right after submitting this form. Applications with filtered or edited photos will be rejected during review.
+                <label>2. Age *</label>
+                <input type="number" name="Age" min="18" max="70" required>
+
+                <label>3. Gender *</label>
+                <select name="Gender" required>
+                    <option value="">-- Select Gender --</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select>
+
+                <label>4. Phone Number *</label>
+                <input type="tel" name="Phone_Number" required>
+
+                <label>5. WhatsApp Number *</label>
+                <input type="tel" name="WhatsApp_Number" required>
+
+                <label>6. Current Residential Address *</label>
+                <input type="text" name="Address" required>
+
+                <label>7. City / Location *</label>
+                <input type="text" name="City" required>
+
+                <label>8. State of Origin *</label>
+                <input type="text" name="State_of_Origin" required>
+
+                <label>9. Highest Educational Qualification *</label>
+                <select name="Qualification" required>
+                    <option value="">-- Select Qualification --</option>
+                    <option value="FSLC">Primary / FSLC</option>
+                    <option value="SSCE/WAEC/NECO">SSCE / WAEC / NECO</option>
+                    <option value="OND/NCE">OND / NCE</option>
+                    <option value="HND/BSc">HND / B.Sc</option>
+                    <option value="Postgraduate">Postgraduate</option>
+                </select>
+
+                <label>10. Marital Status *</label>
+                <select name="Marital_Status" required>
+                    <option value="">-- Select Status --</option>
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="Divorced">Divorced</option>
+                    <option value="Widowed">Widowed</option>
+                </select>
+
+                <label>11. Number of Children *</label>
+                <input type="number" name="Number_of_Children" min="0" required>
+
+                <label>12. Tribe *</label>
+                <input type="text" name="Tribe" required>
+
+                <label>13. Religion (if relevant to placement)</label>
+                <input type="text" name="Religion">
+
+                <label>14. Next of Kin's Full Name *</label>
+                <input type="text" name="Next_of_Kin_Name" required>
+
+                <label>15. Next of Kin's Phone Number *</label>
+                <input type="tel" name="Next_of_Kin_Phone" required>
+
+                <label>16. Next of Kin's Address *</label>
+                <input type="text" name="Next_of_Kin_Address" required>
+
+                <label>17. Passport Photograph / Full Picture * (JPG, JPEG, PNG)</label>
+                <input type="file" name="Full_Picture" accept=".jpg, .jpeg, .png" required>
+            </fieldset>
+
+            <!-- STEP 3: JOB PREFERENCE -->
+            <fieldset>
+                <legend>Job Preference</legend>
+                <label>What type of job are you looking for? *</label>
+                <select id="jobPosition" name="Job_Position" required onchange="toggleJobQuestions()">
+                    <option value="">-- Select Position --</option>
+                    <option value="Live-in House Help">Live-in House Help</option>
+                    <option value="Live-out House Help">Live-out House Help</option>
+                    <option value="Live-in Nanny">Live-in Nanny</option>
+                    <option value="Live-out Nanny">Live-out Nanny</option>
+                    <option value="Cleaner">Cleaner</option>
+                    <option value="Administrative Assistant">Administrative Assistant</option>
+                    <option value="Receptionist/Front Desk Officer">Receptionist / Front Desk Officer</option>
+                    <option value="Customer Service Representative">Customer Service Representative</option>
+                    <option value="Office Assistant">Office Assistant</option>
+                    <option value="Personal Assistant/Secretary">Personal Assistant / Secretary</option>
+                    <option value="HR Assistant">HR Assistant</option>
+                    <option value="Accounts Assistant">Accounts Assistant</option>
+                    <option value="Procurement Officer">Procurement Officer</option>
+                    <option value="Other">Other</option>
+                </select>
+            </fieldset>
+
+            <!-- STEP 4: DOMESTIC STAFF QUESTIONS -->
+            <fieldset id="domesticSection" class="hidden-section">
+                <legend>Domestic Staff Details</legend>
+                
+                <label>1. How many years of experience do you have? *</label>
+                <input type="number" name="Domestic_Experience_Years">
+
+                <label>2. Name of last employer *</label>
+                <input type="text" name="Domestic_Last_Employer">
+
+                <label>3. Address/location of last employer *</label>
+                <input type="text" name="Domestic_Employer_Address">
+
+                <label>4. Phone number of last employer *</label>
+                <input type="tel" name="Domestic_Employer_Phone">
+
+                <label>5. What were your duties in your previous employment? *</label>
+                <textarea name="Domestic_Duties" rows="3"></textarea>
+
+                <label>6. Why did you leave your last job? *</label>
+                <textarea name="Domestic_Reason_Leaving" rows="2"></textarea>
+
+                <label>7. Do you have experience caring for children? *</label>
+                <select name="Domestic_Child_Care_Experience">
+                    <option value="">-- Select --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <label>8. Are you comfortable working in a home with children? *</label>
+                <select name="Domestic_Comfortable_With_Children">
+                    <option value="">-- Select --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <label>9. Are you willing to follow employer's instructions and rules? *</label>
+                <select name="Domestic_Follow_Rules">
+                    <option value="">-- Select --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <label>10. Are you willing to undergo guarantor verification? *</label>
+                <select name="Domestic_Guarantor_Verification">
+                    <option value="">-- Select --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <label>11. Expected monthly salary *</label>
+                <input type="text" name="Domestic_Expected_Salary">
+
+                <label>12. When can you resume work? *</label>
+                <input type="text" name="Domestic_Resumption_Date">
+
+                <label>13. Do you have any allergies we should know about?</label>
+                <input type="text" name="Domestic_Allergies">
+
+                <label>14. Do you have an ulcer or dietary needs affecting work?</label>
+                <input type="text" name="Domestic_Dietary_Needs">
+
+                <label>15. Any health condition relevant to your ability to work?</label>
+                <textarea name="Domestic_Health_Conditions" rows="2"></textarea>
+            </fieldset>
+
+            <!-- STEP 5: ADMINISTRATIVE STAFF QUESTIONS -->
+            <fieldset id="adminSection" class="hidden-section">
+                <legend>Administrative Staff Details</legend>
+                
+                <label>1. Course studied *</label>
+                <input type="text" name="Admin_Course_Studied">
+
+                <label>2. Institution attended *</label>
+                <input type="text" name="Admin_Institution">
+
+                <label>3. Years of work experience *</label>
+                <input type="number" name="Admin_Experience_Years">
+
+                <label>4. Name of last employer *</label>
+                <input type="text" name="Admin_Last_Employer">
+
+                <label>5. Address/location of last employer *</label>
+                <input type="text" name="Admin_Employer_Address">
+
+                <label>6. Previous job title *</label>
+                <input type="text" name="Admin_Previous_Title">
+
+                <label>7. Major responsibilities in previous job *</label>
+                <textarea name="Admin_Responsibilities" rows="3"></textarea>
+
+                <label>8. Reason for leaving last employment *</label>
+                <textarea name="Admin_Reason_Leaving" rows="2"></textarea>
+
+                <label>9. Computer skills *</label>
+                <input type="text" name="Admin_Computer_Skills">
+
+                <label>10. Professional certifications (if any)</label>
+                <input type="text" name="Admin_Certifications">
+
+                <label>11. Last monthly salary *</label>
+                <input type="text" name="Admin_Last_Salary">
+
+                <label>12. Expected monthly salary *</label>
+                <input type="text" name="Admin_Expected_Salary">
+
+                <label>13. When can you resume work? *</label>
+                <input type="text" name="Admin_Resumption_Date">
+
+                <label>14. Are you willing to undergo background verification? *</label>
+                <select name="Admin_Background_Verification">
+                    <option value="">-- Select --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </fieldset>
+
+            <!-- STEP 6: DECLARATION -->
+            <fieldset>
+                <legend>Declaration & Submission</legend>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" required> I confirm that the information provided is accurate.</label>
+                    <label><input type="checkbox" required> I agree to follow workplace rules and reasonable instructions.</label>
+                    <label><input type="checkbox" required> I understand that registration does not guarantee employment.</label>
+                    <label><input type="checkbox" required> I consent to being contacted about suitable job opportunities.</label>
+                </div>
+
+                <button type="submit" class="submit-btn">SUBMIT APPLICATION</button>
+            </fieldset>
+        </form>
     </div>
 
-    <div class="field">
-      <label>Full name <span class="req">*</span></label>
-      <input type="text" name="fullName" placeholder="e.g. Amaka Johnson" required />
-    </div>
-
-    <div class="two-col">
-      <div class="field">
-        <label>Age <span class="req">*</span></label>
-        <input type="number" name="age" min="16" placeholder="e.g. 28" required />
-      </div>
-      <div class="field">
-        <label>Phone number <span class="req">*</span></label>
-        <input type="tel" name="phone" placeholder="0803 000 0000" required />
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Current residential address <span class="req">*</span></label>
-      <input type="text" name="address" placeholder="e.g. 5 Ajayi Street, Ikeja, Lagos" required />
-    </div>
-
-    <div class="field">
-      <label>Qualification <span class="req">*</span></label>
-      <input type="text" name="qualification" placeholder="e.g. SSCE, OND, HND, BSc" required />
-    </div>
-
-    <div class="field">
-      <label>What kind of job are you looking for? <span class="req">*</span></label>
-      <div class="chip-row" data-group="jobType">
-        <button type="button" class="chip" data-value="House Help – Live-in">House Help – Live-in</button>
-        <button type="button" class="chip" data-value="House Help – Live-out">House Help – Live-out</button>
-        <button type="button" class="chip" data-value="Nanny – Live-in">Nanny – Live-in</button>
-        <button type="button" class="chip" data-value="Nanny – Live-out">Nanny – Live-out</button>
-        <button type="button" class="chip" data-value="Administrative Position">Administrative Position</button>
-        <button type="button" class="chip" data-value="Other">Other</button>
-      </div>
-    </div>
-
-    <div class="two-col">
-      <div class="field">
-        <label>Years of experience</label>
-        <input type="text" name="experience" placeholder="e.g. 3 years" />
-      </div>
-      <div class="field">
-        <label>Expected salary</label>
-        <input type="text" name="expectedSalary" placeholder="e.g. ₦90,000/month" />
-      </div>
-    </div>
-
-    <!-- Domestic-only fields -->
-    <div id="domesticFields" class="hidden-section">
-      <div class="field">
-        <label>Tribe</label>
-        <input type="text" name="tribe" placeholder="e.g. Yoruba, Igbo, Hausa" />
-      </div>
-
-      <div class="field">
-        <label>Religion</label>
-        <input type="text" name="religion" placeholder="e.g. Christianity, Islam" />
-      </div>
-
-      <div class="field">
-        <label>Marital status</label>
-        <div class="chip-row" data-group="maritalStatus">
-          <button type="button" class="chip" data-value="Single">Single</button>
-          <button type="button" class="chip" data-value="Married">Married</button>
-          <button type="button" class="chip" data-value="Divorced">Divorced</button>
-          <button type="button" class="chip" data-value="Widowed">Widowed</button>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Number of children</label>
-        <input type="text" name="numChildren" placeholder="e.g. 2, or None" />
-      </div>
-
-      <div class="two-col">
-        <div class="field">
-          <label>Next of kin — name</label>
-          <input type="text" name="nokName" placeholder="Full name" />
-        </div>
-        <div class="field">
-          <label>Next of kin — phone</label>
-          <input type="tel" name="nokPhone" placeholder="0803 000 0000" />
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Name and address of last employer</label>
-        <input type="text" name="lastEmployerDomestic" placeholder="e.g. Mrs. Bello, 10 Admiralty Way, Lekki" />
-      </div>
-
-      <div id="liveInFields" class="hidden-section">
-        <div class="field">
-          <label>Any allergies or known health conditions? (e.g. ulcer, etc.)</label>
-          <input type="text" name="healthConditions" placeholder="e.g. None, or describe briefly" />
-        </div>
-      </div>
-    </div>
-
-    <!-- Admin / Other fields -->
-    <div id="adminFields" class="hidden-section">
-      <div class="field">
-        <label>Last place of work</label>
-        <input type="text" name="lastPlaceOfWork" placeholder="e.g. Company name" />
-      </div>
-    </div>
-
-    <div class="checkbox-field">
-      <input type="checkbox" id="photoConfirm" name="photoConfirm" required />
-      <label for="photoConfirm">I confirm I will send a clear, unedited, filter-free photo of myself via WhatsApp right after submitting this form.</label>
-    </div>
-
-    <div id="errorBox" class="error-box"></div>
-
-    <button type="submit" id="submitBtn">Submit Application</button>
-  </form>
-
-  <div id="confirmation">
-    <div class="check-circle">✓</div>
-    <h2>Thank you.</h2>
-    <p>Your application has been received. One last step — please send us your photo on WhatsApp so we can complete your application.</p>
-    <a id="whatsappBtn" class="whatsapp-btn" href="#" target="_blank">📷 Send Photo on WhatsApp</a>
-  </div>
-</main>
-
-<script>
-const FORM_ENDPOINT = "https://formspree.io/f/xljgzkrq";
-const WHATSAPP_NUMBER = "2347032368163";
-const DOMESTIC_TYPES = ["House Help – Live-in", "House Help – Live-out", "Nanny – Live-in", "Nanny – Live-out"];
-const LIVE_IN_TYPES = ["House Help – Live-in", "Nanny – Live-in"];
-
-const state = { jobType: "", maritalStatus: "" };
-
-document.querySelectorAll(".chip-row").forEach(row => {
-  const group = row.dataset.group;
-  row.querySelectorAll(".chip").forEach(chip => {
-    chip.addEventListener("click", () => {
-      row.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
-      chip.classList.add("active");
-      state[group] = chip.dataset.value;
-      render();
-    });
-  });
-});
-
-function render() {
-  const domesticFields = document.getElementById("domesticFields");
-  const adminFields = document.getElementById("adminFields");
-  const liveInFields = document.getElementById("liveInFields");
-
-  domesticFields.classList.toggle("show", DOMESTIC_TYPES.includes(state.jobType));
-  adminFields.classList.toggle("show", state.jobType === "Administrative Position" || state.jobType === "Other");
-  liveInFields.classList.toggle("show", LIVE_IN_TYPES.includes(state.jobType));
-}
-
-const form = document.getElementById("applyForm");
-const errorBox = document.getElementById("errorBox");
-const submitBtn = document.getElementById("submitBtn");
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  errorBox.classList.remove("show");
-
-  const fd = new FormData(form);
-  const fullName = fd.get("fullName")?.trim();
-  const phone = fd.get("phone")?.trim();
-  const age = fd.get("age");
-  const address = fd.get("address")?.trim();
-  const qualification = fd.get("qualification")?.trim();
-  const photoConfirmed = fd.get("photoConfirm");
-
-  if (!fullName || !phone || !age || !address || !qualification || !state.jobType) {
-    errorBox.textContent = "Please fill in all required fields, including the type of job you're looking for.";
-    errorBox.classList.add("show");
-    return;
-  }
-  if (!photoConfirmed) {
-    errorBox.textContent = "Please confirm you'll send a photo via WhatsApp before submitting.";
-    errorBox.classList.add("show");
-    return;
-  }
-
-  const payload = {
-    "Full name": fullName,
-    "Age": age,
-    "Phone": phone,
-    "Residential address": address,
-    "Qualification": qualification,
-    "Job type seeking": state.jobType,
-    "Years of experience": fd.get("experience") || "",
-    "Expected salary": fd.get("expectedSalary") || "",
-    "Tribe": fd.get("tribe") || "",
-    "Religion": fd.get("religion") || "",
-    "Marital status": state.maritalStatus || "",
-    "Number of children": fd.get("numChildren") || "",
-    "Next of kin name": fd.get("nokName") || "",
-    "Next of kin phone": fd.get("nokPhone") || "",
-    "Last employer (name & address)": fd.get("lastEmployerDomestic") || "",
-    "Health conditions / allergies": fd.get("healthConditions") || "",
-    "Last place of work": fd.get("lastPlaceOfWork") || "",
-    "_subject": "New job application: " + state.jobType + " — " + fullName
-  };
-
-  submitBtn.disabled = true;
-  submitBtn.textContent = "Submitting…";
-
-  try {
-    const res = await fetch(FORM_ENDPOINT, {
-      method: "POST",
-      headers: { "Accept": "application/json", "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    if (res.ok) {
-      const waText = encodeURIComponent(
-        "Hi, I just submitted my job application (" + state.jobType + ") as " + fullName + ". Here's my photo:"
-      );
-      document.getElementById("whatsappBtn").href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + waText;
-      form.style.display = "none";
-      document.getElementById("confirmation").classList.add("show");
-    } else {
-      throw new Error("Submission failed");
-    }
-  } catch (err) {
-    errorBox.textContent = "Something went wrong sending your application. Please try again, or contact us directly on WhatsApp.";
-    errorBox.classList.add("show");
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = "Submit Application";
-  }
-});
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
