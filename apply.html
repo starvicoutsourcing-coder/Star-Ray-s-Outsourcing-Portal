@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Star Rays Outsourcing — Job Seekers Form</title>
+<meta name="description" content="Apply to work with Star Rays Outsourcing." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --emerald:#1A4A3A; --emerald-deep:#123128; --gold:#C9A84C; --gold-soft:#E4D4A6;
+    --cream:#F5F0E8; --charcoal:#2D2D2D; --rust:#B0523F; --line:#DDD3C0;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--charcoal);font-family:'Work Sans',sans-serif;}
+  header{background:var(--emerald);color:var(--cream);padding:18px 20px;display:flex;align-items:center;gap:12px;}
+  .seal{width:38px;height:38px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .seal-inner{width:29px;height:29px;border-radius:50%;border:1px dashed var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;color:var(--gold);font-weight:600;font-size:12px;}
+  .brand-name{font-family:'Fraunces',serif;font-size:18px;font-weight:600;line-height:1.1;}
+  .brand-sub{font-size:11px;color:var(--gold-soft);letter-spacing:0.04em;margin-top:2px;}
+  main{max-width:620px;margin:0 auto;padding:28px 18px 60px;}
+  h1{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--emerald);margin:0 0 6px;}
+  .intro{font-size:13.5px;color:#5c5c5c;line-height:1.5;margin:0 0 22px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+  .req{color:var(--rust);}
+  input,select,textarea{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:9px;border:1.5px solid var(--line);font-family:'Work Sans',sans-serif;font-size:15px;color:var(--charcoal);background:#fff;outline:none;}
+  textarea{resize:vertical;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{padding:9px 15px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--charcoal);font-family:'Work Sans',sans-serif;font-size:13.5px;font-weight:600;cursor:pointer;}
+  .chip.active{background:var(--emerald);border-color:var(--emerald);color:var(--cream);}
+  .notice{background:var(--gold-soft);color:var(--emerald-deep);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.5;margin-bottom:18px;}
+  .notice b{display:block;margin-bottom:3px;}
+  .checkbox-field{display:flex;align-items:flex-start;gap:10px;background:#fff;border:1px solid #E7DFCF;border-radius:10px;padding:13px 14px;margin-bottom:18px;}
+  .checkbox-field input{width:auto;margin-top:2px;flex-shrink:0;}
+  .checkbox-field label{font-size:13px;color:#5c5c5c;line-height:1.5;font-weight:500;}
+  .two-col{display:flex;gap:12px;}
+  .two-col > div{flex:1;}
+  .error-box{background:#FBEAE6;color:var(--rust);padding:11px 14px;border-radius:9px;font-size:13.5px;margin-bottom:16px;font-weight:600;display:none;}
+  .error-box.show{display:block;}
+  button[type=submit]{width:100%;background:var(--emerald);color:var(--cream);border:none;border-radius:10px;padding:15px 22px;font-family:'Work Sans',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;}
+  button[type=submit]:disabled{opacity:0.6;cursor:not-allowed;}
+  .hidden-section{display:none;}
+  .hidden-section.show{display:block;}
+  #confirmation{display:none;text-align:center;padding:40px 10px;}
+  #confirmation.show{display:block;}
+  .check-circle{width:62px;height:62px;border-radius:50%;background:var(--emerald);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:var(--cream);font-size:28px;}
+  #confirmation h2{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--emerald);margin-bottom:10px;}
+  #confirmation p{font-size:14.5px;color:#5c5c5c;line-height:1.6;max-width:400px;margin:0 auto 22px;}
+  .whatsapp-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border:none;border-radius:10px;padding:14px 24px;font-family:'Work Sans',sans-serif;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="seal"><div class="seal-inner">SR</div></div>
+  <div>
+    <div class="brand-name">Star Rays Outsourcing</div>
+    <div class="brand-sub">Job Seekers Form</div>
+  </div>
+</header>
+
+<main>
+  <form id="applyForm">
+    <h1>Apply to work with us</h1>
+    <p class="intro">Fill this in once — our team will reach out after reviewing your application.</p>
+
+    <div class="notice">
+      <b>📷 Photo required</b>
+      Please send a clear, unedited, filter-free photo of yourself on WhatsApp right after submitting this form. Applications with filtered or edited photos will be rejected during review.
+    </div>
+
+    <div class="field">
+      <label>Full name <span class="req">*</span></label>
+      <input type="text" name="fullName" placeholder="e.g. Amaka Johnson" required />
+    </div>
+
+    <div class="two-col">
+      <div class="field">
+        <label>Age <span class="req">*</span></label>
+        <input type="number" name="age" min="16" placeholder="e.g. 28" required />
+      </div>
+      <div class="field">
+        <label>Phone number <span class="req">*</span></label>
+        <input type="tel" name="phone" placeholder="0803 000 0000" required />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Current residential address <span class="req">*</span></label>
+      <input type="text" name="address" placeholder="e.g. 5 Ajayi Street, Ikeja, Lagos" required />
+    </div>
+
+    <div class="field">
+      <label>Qualification <span class="req">*</span></label>
+      <input type="text" name="qualification" placeholder="e.g. SSCE, OND, HND, BSc" required />
+    </div>
+
+    <div class="field">
+      <label>What kind of job are you looking for? <span class="req">*</span></label>
+      <div class="chip-row" data-group="jobType">
+        <button type="button" class="chip" data-value="House Help – Live-in">House Help – Live-in</button>
+        <button type="button" class="chip" data-value="House Help – Live-out">House Help – Live-out</button>
+        <button type="button" class="chip" data-value="Nanny – Live-in">Nanny – Live-in</button>
+        <button type="button" class="chip" data-value="Nanny – Live-out">Nanny – Live-out</button>
+        <button type="button" class="chip" data-value="Administrative Position">Administrative Position</button>
+        <button type="button" class="chip" data-value="Other">Other</button>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="field">
+        <label>Years of experience</label>
+        <input type="text" name="experience" placeholder="e.g. 3 years" />
+      </div>
+      <div class="field">
+        <label>Expected salary</label>
+        <input type="text" name="expectedSalary" placeholder="e.g. ₦90,000/month" />
+      </div>
+    </div>
+
+    <!-- Domestic-only fields -->
+    <div id="domesticFields" class="hidden-section">
+      <div class="field">
+        <label>Tribe</label>
+        <input type="text" name="tribe" placeholder="e.g. Yoruba, Igbo, Hausa" />
+      </div>
+
+      <div class="field">
+        <label>Religion</label>
+        <input type="text" name="religion" placeholder="e.g. Christianity, Islam" />
+      </div>
+
+      <div class="field">
+        <label>Marital status</label>
+        <div class="chip-row" data-group="maritalStatus">
+          <button type="button" class="chip" data-value="Single">Single</button>
+          <button type="button" class="chip" data-value="Married">Married</button>
+          <button type="button" class="chip" data-value="Divorced">Divorced</button>
+          <button type="button" class="chip" data-value="Widowed">Widowed</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Number of children</label>
+        <input type="text" name="numChildren" placeholder="e.g. 2, or None" />
+      </div>
+
+      <div class="two-col">
+        <div class="field">
+          <label>Next of kin — name</label>
+          <input type="text" name="nokName" placeholder="Full name" />
+        </div>
+        <div class="field">
+          <label>Next of kin — phone</label>
+          <input type="tel" name="nokPhone" placeholder="0803 000 0000" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Name and address of last employer</label>
+        <input type="text" name="lastEmployerDomestic" placeholder="e.g. Mrs. Bello, 10 Admiralty Way, Lekki" />
+      </div>
+
+      <div id="liveInFields" class="hidden-section">
+        <div class="field">
+          <label>Any allergies or known health conditions? (e.g. ulcer, etc.)</label>
+          <input type="text" name="healthConditions" placeholder="e.g. None, or describe briefly" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin / Other fields -->
+    <div id="adminFields" class="hidden-section">
+      <div class="field">
+        <label>Last place of work</label>
+        <input type="text" name="lastPlaceOfWork" placeholder="e.g. Company name" />
+      </div>
+    </div>
+
+    <div class="checkbox-field">
+      <input type="checkbox" id="photoConfirm" name="photoConfirm" required />
+      <label for="photoConfirm">I confirm I will send a clear, unedited, filter-free photo of myself via WhatsApp right after submitting this form.</label>
+    </div>
+
+    <div id="errorBox" class="error-box"></div>
+
+    <button type="submit" id="submitBtn">Submit Application</button>
+  </form>
+
+  <div id="confirmation">
+    <div class="check-circle">✓</div>
+    <h2>Thank you.</h2>
+    <p>Your application has been received. One last step — please send us your photo on WhatsApp so we can complete your application.</p>
+    <a id="whatsappBtn" class="whatsapp-btn" href="#" target="_blank">📷 Send Photo on WhatsApp</a>
+  </div>
+</main>
+
+<script>
+const FORM_ENDPOINT = "https://formspree.io/f/xljgzkrq";
+const WHATSAPP_NUMBER = "2347032368163";
+const DOMESTIC_TYPES = ["House Help – Live-in", "House Help – Live-out", "Nanny – Live-in", "Nanny – Live-out"];
+const LIVE_IN_TYPES = ["House Help – Live-in", "Nanny – Live-in"];
+
+const state = { jobType: "", maritalStatus: "" };
+
+document.querySelectorAll(".chip-row").forEach(row => {
+  const group = row.dataset.group;
+  row.querySelectorAll(".chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      row.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      state[group] = chip.dataset.value;
+      render();
+    });
+  });
+});
+
+function render() {
+  const domesticFields = document.getElementById("domesticFields");
+  const adminFields = document.getElementById("adminFields");
+  const liveInFields = document.getElementById("liveInFields");
+
+  domesticFields.classList.toggle("show", DOMESTIC_TYPES.includes(state.jobType));
+  adminFields.classList.toggle("show", state.jobType === "Administrative Position" || state.jobType === "Other");
+  liveInFields.classList.toggle("show", LIVE_IN_TYPES.includes(state.jobType));
+}
+
+const form = document.getElementById("applyForm");
+const errorBox = document.getElementById("errorBox");
+const submitBtn = document.getElementById("submitBtn");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  errorBox.classList.remove("show");
+
+  const fd = new FormData(form);
+  const fullName = fd.get("fullName")?.trim();
+  const phone = fd.get("phone")?.trim();
+  const age = fd.get("age");
+  const address = fd.get("address")?.trim();
+  const qualification = fd.get("qualification")?.trim();
+  const photoConfirmed = fd.get("photoConfirm");
+
+  if (!fullName || !phone || !age || !address || !qualification || !state.jobType) {
+    errorBox.textContent = "Please fill in all required fields, including the type of job you're looking for.";
+    errorBox.classList.add("show");
+    return;
+  }
+  if (!photoConfirmed) {
+    errorBox.textContent = "Please confirm you'll send a photo via WhatsApp before submitting.";
+    errorBox.classList.add("show");
+    return;
+  }
+
+  const payload = {
+    "Full name": fullName,
+    "Age": age,
+    "Phone": phone,
+    "Residential address": address,
+    "Qualification": qualification,
+    "Job type seeking": state.jobType,
+    "Years of experience": fd.get("experience") || "",
+    "Expected salary": fd.get("expectedSalary") || "",
+    "Tribe": fd.get("tribe") || "",
+    "Religion": fd.get("religion") || "",
+    "Marital status": state.maritalStatus || "",
+    "Number of children": fd.get("numChildren") || "",
+    "Next of kin name": fd.get("nokName") || "",
+    "Next of kin phone": fd.get("nokPhone") || "",
+    "Last employer (name & address)": fd.get("lastEmployerDomestic") || "",
+    "Health conditions / allergies": fd.get("healthConditions") || "",
+    "Last place of work": fd.get("lastPlaceOfWork") || "",
+    "_subject": "New job application: " + state.jobType + " — " + fullName
+  };
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Submitting…";
+
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Accept": "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    if (res.ok) {
+      const waText = encodeURIComponent(
+        "Hi, I just submitted my job application (" + state.jobType + ") as " + fullName + ". Here's my photo:"
+      );
+      document.getElementById("whatsappBtn").href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + waText;
+      form.style.display = "none";
+      document.getElementById("confirmation").classList.add("show");
+    } else {
+      throw new Error("Submission failed");
+    }
+  } catch (err) {
+    errorBox.textContent = "Something went wrong sending your application. Please try again, or contact us directly on WhatsApp.";
+    errorBox.classList.add("show");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Submit Application";
+  }
+});
+</script>
+
+</body>
+</html>
