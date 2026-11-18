@@ -22,6 +22,7 @@
   main{max-width:620px;margin:0 auto;padding:28px 18px 60px;}
   h1{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--emerald);margin:0 0 6px;}
   .intro{font-size:13.5px;color:#5c5c5c;line-height:1.5;margin:0 0 22px;}
+  .section-title{font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:var(--emerald);margin:26px 0 12px;padding-bottom:6px;border-bottom:1.5px solid var(--gold-soft);}
   .field{margin-bottom:18px;}
   .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
   .req{color:var(--rust);}
@@ -32,12 +33,30 @@
   .chip.active{background:var(--emerald);border-color:var(--emerald);color:var(--cream);}
   .price-note{background:var(--gold-soft);color:var(--emerald-deep);border-radius:10px;padding:11px 14px;font-size:13px;font-weight:600;margin-bottom:18px;display:none;}
   .price-note.show{display:block;}
+  .notice{background:var(--gold-soft);color:var(--emerald-deep);border-radius:10px;padding:12px 14px;font-size:12.5px;line-height:1.55;margin-bottom:18px;}
+  .notice b{display:block;margin-bottom:3px;font-size:13px;}
+  .guide-hint{font-size:12px;color:#8a8a8a;margin:0 0 8px;}
+  .guide-note{font-size:12px;color:#5c5c5c;line-height:1.5;margin:2px 0 18px;}
+  .band{background:#fff;border:1.5px solid var(--gold);border-radius:12px;margin-bottom:10px;overflow:hidden;}
+  .band summary{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;list-style:none;}
+  .band summary::-webkit-details-marker{display:none;}
+  .band-title{font-weight:700;font-size:14px;color:var(--emerald);}
+  .band-title small{display:block;font-weight:500;font-size:11.5px;color:#7a7a7a;margin-top:2px;}
+  .band-salary{font-weight:700;font-size:13px;color:#8A6B1E;text-align:right;}
+  .band-salary small{display:block;font-weight:500;font-size:11px;color:#7a7a7a;}
+  .band ul{margin:0;padding:0 16px 14px 32px;font-size:12.5px;color:#5c5c5c;line-height:1.6;}
   .plan-card{background:#fff;border:1.5px solid var(--gold);border-radius:12px;padding:14px 16px;margin-bottom:18px;display:none;}
   .plan-card.show{display:block;}
-  .plan-title{font-weight:700;font-size:14px;color:var(--emerald);margin-bottom:6px;}
-  .plan-desc{font-size:12.5px;color:#5c5c5c;line-height:1.6;}
+  .plan-title{font-weight:700;font-size:15px;color:var(--emerald);}
+  .plan-badge{display:inline-block;background:var(--gold-soft);color:var(--emerald-deep);font-size:11px;font-weight:700;border-radius:999px;padding:3px 10px;margin:6px 0 8px;}
+  .plan-card ul{list-style:none;margin:6px 0 10px;padding:0;font-size:13px;line-height:1.7;}
+  .plan-card li:before{content:"\2713\00a0\00a0";color:var(--emerald);font-weight:700;}
+  .plan-desc p{font-size:12.5px;color:#5c5c5c;line-height:1.6;margin:0 0 8px;}
+  .checkbox-field{display:flex;align-items:flex-start;gap:10px;background:#fff;border:1px solid #E7DFCF;border-radius:10px;padding:13px 14px;margin-bottom:18px;}
+  .checkbox-field input{width:auto;margin-top:2px;flex-shrink:0;}
+  .checkbox-field label{font-size:13px;color:#5c5c5c;line-height:1.5;font-weight:500;}
   .two-col{display:flex;gap:12px;}
-  .two-col > div{flex:1;}
+  .two-col > div{flex:1;min-width:0;}
   .error-box{background:#FBEAE6;color:var(--rust);padding:11px 14px;border-radius:9px;font-size:13.5px;margin-bottom:16px;font-weight:600;display:none;}
   .error-box.show{display:block;}
   button[type=submit]{width:100%;background:var(--emerald);color:var(--cream);border:none;border-radius:10px;padding:15px 22px;font-family:'Work Sans',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;}
@@ -49,7 +68,8 @@
   #confirmation.show{display:block;}
   .check-circle{width:62px;height:62px;border-radius:50%;background:var(--emerald);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:var(--cream);font-size:28px;}
   #confirmation h2{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--emerald);margin-bottom:10px;}
-  #confirmation p{font-size:14.5px;color:#5c5c5c;line-height:1.6;max-width:380px;margin:0 auto 26px;}
+  #confirmation p{font-size:14.5px;color:#5c5c5c;line-height:1.6;max-width:380px;margin:0 auto 18px;}
+  .ref{font-size:13px;color:#5c5c5c;margin-bottom:24px;}
   .ghost-btn{background:transparent;color:var(--emerald);border:1.5px solid var(--emerald);border-radius:10px;padding:11px 20px;font-family:'Work Sans',sans-serif;font-weight:600;font-size:14px;cursor:pointer;}
 </style>
 </head>
@@ -79,8 +99,58 @@
       </div>
     </div>
 
-    <!-- Domestic-only fields -->
+    <div class="section-title">Your details</div>
+
+    <div class="field">
+      <label>Your full name <span class="req">*</span></label>
+      <input type="text" name="fullName" placeholder="e.g. Amaka Johnson" required />
+    </div>
+
+    <div class="field">
+      <label>Phone number <span class="req">*</span></label>
+      <input type="tel" name="phone" placeholder="e.g. 0803 000 0000" required />
+    </div>
+
+    <div class="field">
+      <label>Email (optional)</label>
+      <input type="email" name="email" placeholder="you@email.com" />
+    </div>
+
+    <div class="field">
+      <label>Residential area / location <span class="req">*</span></label>
+      <input type="text" name="location" placeholder="e.g. Lekki, Lagos" required />
+    </div>
+
+    <div id="domesticContact" class="hidden-section">
+      <div class="field">
+        <label>Home address</label>
+        <input type="text" name="homeAddress" placeholder="e.g. 5 Admiralty Way, Lekki Phase 1" />
+      </div>
+      <div class="field">
+        <label>Preferred method of contact</label>
+        <div class="chip-row" data-group="contactMethod">
+          <button type="button" class="chip" data-value="Phone Call">Phone Call</button>
+          <button type="button" class="chip" data-value="WhatsApp">WhatsApp</button>
+          <button type="button" class="chip" data-value="Email">Email</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="field">
+        <label>Number needed</label>
+        <input type="number" name="numStaff" min="1" placeholder="1" />
+      </div>
+      <div class="field">
+        <label>Preferred start date</label>
+        <input type="date" name="startDate" />
+      </div>
+    </div>
+
+    <!-- ========== Domestic (House Assistant / Nanny) ========== -->
     <div id="domesticFields" class="hidden-section">
+
+      <div class="section-title">Work arrangement &amp; salary guide</div>
       <div class="field">
         <label>Live-in or live-out?</label>
         <div class="chip-row" data-group="arrangement">
@@ -89,19 +159,102 @@
           <button type="button" class="chip" data-value="Either">Either</button>
         </div>
       </div>
-      <div id="domesticPriceNote" class="price-note"></div>
 
-      <div class="field">
-        <label>Payment plan <span class="req">*</span></label>
-        <div class="chip-row" data-group="paymentPlan">
-          <button type="button" class="chip" data-value="Retainership">Retainership</button>
-          <button type="button" class="chip" data-value="One-off">One-off</button>
+      <div id="bandsBox" class="hidden-section"></div>
+
+      <div id="nannyPackageField" class="field hidden-section">
+        <label>Preferred package (optional)</label>
+        <div class="chip-row" data-group="nannyPackage">
+          <button type="button" class="chip" data-value="Basic Nanny (1–2 children)">Basic Nanny (1–2 children)</button>
+          <button type="button" class="chip" data-value="Full-Time Nanny">Full-Time Nanny</button>
         </div>
       </div>
-      <div id="planCard" class="plan-card">
-        <div class="plan-title" id="planTitle"></div>
-        <div class="plan-desc" id="planDesc"></div>
+
+      <div class="two-col">
+        <div class="field">
+          <label>Working days</label>
+          <input type="text" name="workDays" placeholder="e.g. Monday – Saturday" />
+        </div>
+        <div class="field">
+          <label>Working hours</label>
+          <input type="text" name="workTime" placeholder="e.g. 7am – 7pm" />
+        </div>
       </div>
+
+      <div class="section-title">Family &amp; household</div>
+      <div class="field">
+        <label>Number of children / household size</label>
+        <input type="text" name="householdSize" placeholder="e.g. 2 children, 4 in the household" />
+      </div>
+
+      <div id="nannyOnly" class="hidden-section">
+        <div class="field">
+          <label>Age(s) of child(ren)</label>
+          <input type="text" name="childAges" placeholder="e.g. 3 years and 8 months" />
+        </div>
+        <div class="field">
+          <label>Do the children attend school?</label>
+          <div class="chip-row" data-group="schoolAttend">
+            <button type="button" class="chip" data-value="Yes">Yes</button>
+            <button type="button" class="chip" data-value="No">No</button>
+          </div>
+        </div>
+        <div id="schoolSchedule" class="field hidden-section">
+          <label>School schedule</label>
+          <input type="text" name="schoolSchedule" placeholder="e.g. Mon–Fri, 8am – 3pm" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Medical conditions / special care needs (if none, write N/A)</label>
+        <input type="text" name="specialNeeds" placeholder="e.g. N/A" />
+      </div>
+
+      <div id="houseTypeFieldDomestic" class="field hidden-section">
+        <label>House type (for live-in)</label>
+        <div class="chip-row" data-group="houseTypeDomestic">
+          <button type="button" class="chip" data-value="Flat">Flat</button>
+          <button type="button" class="chip" data-value="Bungalow">Bungalow</button>
+          <button type="button" class="chip" data-value="Duplex">Duplex</button>
+          <button type="button" class="chip" data-value="Terrace">Terrace</button>
+          <button type="button" class="chip" data-value="Other">Other</button>
+        </div>
+      </div>
+
+      <div class="section-title">Duties (select all that apply)</div>
+
+      <div id="dutiesNannyBox" class="field hidden-section">
+        <div class="chip-row" data-group="dutiesNanny" data-multi="true">
+          <button type="button" class="chip" data-value="Childcare supervision">Childcare supervision</button>
+          <button type="button" class="chip" data-value="Feeding">Feeding</button>
+          <button type="button" class="chip" data-value="Bathing and dressing">Bathing and dressing</button>
+          <button type="button" class="chip" data-value="School runs">School runs</button>
+          <button type="button" class="chip" data-value="Homework assistance">Homework assistance</button>
+          <button type="button" class="chip" data-value="Night care / overnight duties">Night care / overnight duties</button>
+          <button type="button" class="chip" data-value="Laundry">Laundry</button>
+          <button type="button" class="chip" data-value="Cooking">Cooking</button>
+          <button type="button" class="chip" data-value="Light cleaning">Light cleaning</button>
+          <button type="button" class="chip" data-value="Other (see below)">Other (specify below)</button>
+        </div>
+      </div>
+
+      <div id="dutiesHouseBox" class="field hidden-section">
+        <div class="chip-row" data-group="dutiesHouse" data-multi="true">
+          <button type="button" class="chip" data-value="General household cleaning">General household cleaning</button>
+          <button type="button" class="chip" data-value="Laundry and ironing">Laundry and ironing</button>
+          <button type="button" class="chip" data-value="Washing dishes">Washing dishes</button>
+          <button type="button" class="chip" data-value="Tidying and maintaining the home">Tidying and maintaining the home</button>
+          <button type="button" class="chip" data-value="General household assistance">General household assistance</button>
+          <button type="button" class="chip" data-value="Other (see below)">Other (specify below)</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Other duties</label>
+        <input type="text" name="otherDuties" placeholder="Anything not listed above" />
+      </div>
+
+      <div class="section-title">Candidate preferences</div>
 
       <div class="field">
         <label>Preferred age range</label>
@@ -115,12 +268,12 @@
       </div>
 
       <div class="field">
-        <label>Language preference</label>
+        <label>Languages required / preferred</label>
         <input type="text" name="languagePref" placeholder="e.g. English, Yoruba, Igbo, Hausa, Pidgin" />
       </div>
 
       <div class="field">
-        <label>Tribe preference (optional)</label>
+        <label>Preferred tribe / ethnic background (optional)</label>
         <input type="text" name="tribePref" placeholder="e.g. No preference" />
       </div>
 
@@ -130,39 +283,47 @@
       </div>
 
       <div class="field">
-        <label>Number of children / household size</label>
-        <input type="text" name="householdSize" placeholder="e.g. 2 children, ages 3 and 6" />
+        <label>Minimum years of experience</label>
+        <input type="text" name="minExperience" placeholder="e.g. 2 years" />
+      </div>
+
+      <div class="section-title">Salary &amp; benefits</div>
+
+      <div class="field">
+        <label>Proposed monthly salary (₦)</label>
+        <input type="text" name="proposedSalary" placeholder="e.g. ₦120,000" />
+      </div>
+
+      <div id="accommodationField" class="field hidden-section">
+        <label>Accommodation provided?</label>
+        <div class="chip-row" data-group="accommodationDomestic">
+          <button type="button" class="chip" data-value="Yes – by client">Yes – by client</button>
+          <button type="button" class="chip" data-value="No">No</button>
+        </div>
       </div>
 
       <div class="field">
-        <label>Any special needs child? (optional)</label>
-        <input type="text" name="specialNeeds" placeholder="e.g. No, or describe briefly" />
+        <label>Other benefits</label>
+        <input type="text" name="otherBenefits" placeholder="e.g. feeding, transport allowance" />
       </div>
 
-      <div id="houseTypeFieldDomestic" class="field hidden-section">
-        <label>House type (for live-in)</label>
-        <div class="chip-row" data-group="houseTypeDomestic">
-          <button type="button" class="chip" data-value="Flat">Flat</button>
-          <button type="button" class="chip" data-value="Bungalow">Bungalow</button>
-          <button type="button" class="chip" data-value="Duplex">Duplex</button>
-          <button type="button" class="chip" data-value="Terrace">Terrace</button>
-          <button type="button" class="chip" data-value="Other">Other</button>
-        </div>
+      <div class="notice">
+        <b>Days off</b>
+        Mature staff are entitled to 4 days off in a month. Younger live-in help are entitled to 3 days off in a month, preferably at the end of the month.
       </div>
     </div>
 
-    <!-- Office-only fields -->
+    <!-- ========== Office staff ========== -->
     <div id="officeFields" class="hidden-section">
+      <div class="section-title">Office staff details</div>
       <div class="field">
         <label>Office address</label>
         <input type="text" name="officeAddress" placeholder="e.g. 12 Admiralty Way, Lekki Phase 1" />
       </div>
-
       <div class="field">
         <label>Work days and hours</label>
         <input type="text" name="workHours" placeholder="e.g. Mon–Fri, 9am–5pm" />
       </div>
-
       <div class="field">
         <label>Gender preference</label>
         <div class="chip-row" data-group="genderPrefOffice">
@@ -171,22 +332,18 @@
           <button type="button" class="chip" data-value="No preference">No preference</button>
         </div>
       </div>
-
       <div class="field">
         <label>Tribe preference (optional)</label>
         <input type="text" name="tribePrefOffice" placeholder="e.g. No preference" />
       </div>
-
       <div class="field">
         <label>Religion preference (optional)</label>
         <input type="text" name="religionPrefOffice" placeholder="e.g. No preference" />
       </div>
-
       <div class="field">
         <label>Qualifications</label>
         <input type="text" name="qualifications" placeholder="e.g. HND/BSc, 2+ years admin experience" />
       </div>
-
       <div class="field">
         <label>Provision of accommodation</label>
         <div class="chip-row" data-group="accommodationOffice">
@@ -196,8 +353,9 @@
       </div>
     </div>
 
-    <!-- Cleaning-only fields -->
+    <!-- ========== Cleaning ========== -->
     <div id="cleaningFields" class="hidden-section">
+      <div class="section-title">Cleaning details</div>
       <div class="field">
         <label>House structure</label>
         <div class="chip-row" data-group="houseType">
@@ -219,48 +377,39 @@
       <div id="cleaningPriceNote" class="price-note"></div>
     </div>
 
-    <!-- Flat pricing note for Admin/Other -->
     <div id="flatPriceNote" class="price-note"></div>
 
-    <div class="field">
-      <label>Your full name <span class="req">*</span></label>
-      <input type="text" name="fullName" placeholder="e.g. Amaka Johnson" required />
-    </div>
-
-    <div class="field">
-      <label>Phone number <span class="req">*</span></label>
-      <input type="tel" name="phone" placeholder="e.g. 0803 000 0000" required />
-    </div>
-
-    <div class="field">
-      <label>Email (optional)</label>
-      <input type="email" name="email" placeholder="you@email.com" />
-    </div>
-
-    <div class="field">
-      <label>Location / area <span class="req">*</span></label>
-      <input type="text" name="location" placeholder="e.g. Lekki, Lagos" required />
-    </div>
-
-    <div class="two-col">
-      <div class="field">
-        <label>Number needed</label>
-        <input type="number" name="numStaff" min="1" placeholder="1" />
-      </div>
-      <div class="field">
-        <label>Preferred start date</label>
-        <input type="date" name="startDate" />
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Budget range</label>
+    <div id="budgetField" class="field">
+      <label>Budget / salary range</label>
       <input type="text" name="budget" placeholder="e.g. ₦100,000–₦120,000/month" />
     </div>
 
     <div class="field">
       <label>Anything else we should know?</label>
-      <textarea name="details" rows="3" placeholder="Special requirements, household size, working hours, etc."></textarea>
+      <textarea name="details" rows="3" placeholder="Any other information relevant to your request"></textarea>
+    </div>
+
+    <!-- ========== Terms (domestic only) ========== -->
+    <div id="termsFields" class="hidden-section">
+      <div class="section-title">Terms of engagement</div>
+      <div class="field">
+        <label>Preferred engagement option <span class="req">*</span></label>
+        <div class="chip-row" data-group="paymentPlan">
+          <button type="button" class="chip" data-value="Retainership">Retainership – ₦120,000</button>
+          <button type="button" class="chip" data-value="One-off">One-off – ₦100,000</button>
+        </div>
+      </div>
+      <div id="planCard" class="plan-card"></div>
+
+      <div class="notice">
+        <b>How it works</b>
+        Pictures of interviewed candidates are sent to you. Once you select the candidate who meets your needs, full payment is made. The pre-employment medical tests and verification are then carried out, all documentation is completed and submitted, and the staff member resumes. Your Star Rays representative will share the payment details at that stage.
+      </div>
+
+      <div class="checkbox-field">
+        <input type="checkbox" id="termsAgree" />
+        <label for="termsAgree">I have read, understood and agree to the terms of engagement above.</label>
+      </div>
     </div>
 
     <div id="errorBox" class="error-box"></div>
@@ -277,6 +426,7 @@
     <div class="check-circle">✓</div>
     <h2>Thank you.</h2>
     <p>Your request has been received. A Star Rays representative will contact you shortly.</p>
+    <div class="ref">Your reference: <b id="refNo"></b></div>
     <button class="ghost-btn" id="resetBtn">Submit another request</button>
   </div>
 </main>
@@ -287,161 +437,303 @@ const DOMESTIC_TYPES = ["House Assistant", "Nanny"];
 
 const state = {
   staffType: "", arrangement: "", paymentPlan: "", ageRange: "",
-  houseType: "", cleaningFrequency: "", houseTypeDomestic: ""
+  houseType: "", cleaningFrequency: "", houseTypeDomestic: "",
+  dutiesNanny: [], dutiesHouse: []
 };
 
-const PAYMENT_PLANS = {
-  "Retainership": {
-    label: "Retainership Fee — ₦120,000",
-    desc: "Covers candidate recruitment, background verification, and pre-employment medical examination. Valid for 1 year from engagement. If a placed staff member is unsuitable, a replacement is provided within 2–4 weeks, up to 2 replacements within the year. The agency handles all salary disbursement and staff management throughout. Applies only to this request — further requests attract standard fees, negotiable on discussion."
+/* ---------- Salary bands (from the Monthly Salary Bands card) ---------- */
+const BANDS = {
+  houseIn: {
+    title: "Basic Live-in House Help", sub: "1–2 children (if any)", salary: "₦90,000 – ₦120,000",
+    duties: ["General household cleaning", "Laundry and ironing", "Washing dishes", "Tidying and maintaining the home", "General household assistance"]
   },
-  "One-off": {
-    label: "One-Off Fee — ₦100,000",
-    desc: "Covers candidate recruitment, background verification, and pre-employment medical examination. Placement coverage for 3 months, with 1 replacement if needed. After placement, staff supervision and day-to-day management is the client's responsibility."
+  nannyBasic: {
+    title: "Basic Nanny", sub: "1–2 children", salary: "₦120,000 – ₦150,000",
+    duties: ["Child supervision and safety", "Feeding and meal preparation for the children", "Bathing and dressing", "School preparation and school runs", "Keeping children's rooms and play areas tidy", "Light household assistance"]
+  },
+  nannyFull: {
+    title: "Full-Time Nanny", sub: "", salary: "₦150,000",
+    duties: ["Full-time childcare and supervision", "Feeding and meal preparation for children", "Bathing, dressing and personal hygiene", "School runs and homework assistance", "Playtime and developmental activities", "Maintaining children's spaces", "Very minimal household duties"]
+  },
+  nannyOut: {
+    title: "Live-out Nanny", sub: "Returns home daily", salary: "₦150,000 – ₦200,000",
+    duties: ["Childcare supervision and support", "Feeding and meal preparation for children", "Bathing, dressing and school runs", "Light household assistance (as needed)"]
   }
 };
+const SALARY_NOTE = "Salaries are a guide. The final rate depends on the duties, number of children, working hours and location. The one-time processing fee is separate from the monthly salary.";
+const LIVE_OUT_HOUSE_NOTE = "Live-out House Assistant: ₦100,000/month and above — includes a transport allowance.";
 
-const FLAT_PRICING = {
-  "Administrative / Office Staff": "Recruitment fee: 6% of annual gross salary + 7.5% VAT",
-  "Other": "We'll confirm pricing with you once we understand the role."
-};
-
-function priceNoteFor(staffType, arrangement, houseType) {
-  if (staffType === "House Assistant") {
-    return arrangement === "Live-out"
-      ? "₦100,000/month and above — live-out includes a transport allowance."
-      : "₦80,000/month and above — rate depends on the helper's age and experience.";
+function bandsFor(type, arr) {
+  if (type === "House Assistant") {
+    if (arr === "Live-in") return { bands: [BANDS.houseIn], note: "" };
+    if (arr === "Live-out") return { bands: [], note: LIVE_OUT_HOUSE_NOTE };
+    if (arr === "Either") return { bands: [BANDS.houseIn], note: LIVE_OUT_HOUSE_NOTE };
   }
-  if (staffType === "Nanny") {
-    return arrangement === "Live-out"
-      ? "₦100,000/month — go-and-come includes a transport allowance."
-      : "₦90,000/month and above — rate depends on the nanny's age and experience.";
+  if (type === "Nanny") {
+    if (arr === "Live-in") return { bands: [BANDS.nannyBasic, BANDS.nannyFull], note: "" };
+    if (arr === "Live-out") return { bands: [BANDS.nannyOut], note: "" };
+    if (arr === "Either") return { bands: [BANDS.nannyBasic, BANDS.nannyFull, BANDS.nannyOut], note: "" };
   }
-  if (staffType === "Recurring Cleaning") {
-    if (arrangement === "Monthly") {
-      return houseType === "Flat"
-        ? "₦85,000/month (8 visits) for flats."
-        : "Monthly rate is subject to assessment for this house structure.";
-    }
-    if (arrangement === "Daily") return "Daily rate is subject to assessment of the apartment.";
-    if (arrangement === "One-off") return "One-off cleaning — we'll confirm a quote based on house size and condition.";
-    return null;
-  }
-  return FLAT_PRICING[staffType] || null;
+  return { bands: [], note: "" };
 }
 
+/* ---------- Engagement plans (from the Domestic Processing Fee card + request form) ---------- */
+const PLANS = {
+  "Retainership": {
+    label: "Retainership Plan — ₦120,000 / 1 year",
+    badge: "Full service — we manage your staff",
+    benefits: [
+      "First placement covered",
+      "2 free replacements within 1 year",
+      "Medical tests, including replacements",
+      "Guarantor & staff verification",
+      "Salary disbursement by us",
+      "Full staff management"
+    ],
+    terms: [
+      "Valid for one (1) year from the date of engagement. Replacements are provided within 2–4 weeks.",
+      "Renewal: after the first year you may renew for another year at ₦80,000. Renewal covers one (1) staff replacement, and we continue to manage salary, complaints and all other matters relating to your staff.",
+      "Non-renewal: if you do not renew, we no longer manage the staff member and are not responsible for any staff change or replacement until the retainership is renewed.",
+      "This plan applies to this staff request only. Further requests attract our standard fees, open to negotiation.",
+      "Fees cover recruitment, screening and verification, and are non-refundable."
+    ]
+  },
+  "One-off": {
+    label: "One-Off Plan — ₦100,000 / 3 months",
+    badge: "You manage your staff",
+    benefits: [
+      "First placement covered",
+      "1 free replacement within 3 months",
+      "Pre-employment medical tests",
+      "Guarantor & staff verification",
+      "Basic client support",
+      "Salary paid directly by you"
+    ],
+    terms: [
+      "Placement coverage lasts three (3) months. A replacement, if needed, is provided within 2–4 weeks.",
+      "After placement, supervision and day-to-day management of the staff member is your responsibility.",
+      "This plan applies to this staff request only.",
+      "Fees cover recruitment, screening and verification, and are non-refundable."
+    ]
+  }
+};
+
+/* ---------- Chips ---------- */
 document.querySelectorAll(".chip-row").forEach(row => {
   const group = row.dataset.group;
+  const multi = row.dataset.multi === "true";
   row.querySelectorAll(".chip").forEach(chip => {
     chip.addEventListener("click", () => {
-      row.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
-      chip.classList.add("active");
-      state[group] = chip.dataset.value;
+      if (multi) {
+        chip.classList.toggle("active");
+        state[group] = Array.from(row.querySelectorAll(".chip.active")).map(c => c.dataset.value);
+      } else {
+        row.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        state[group] = chip.dataset.value;
+      }
       render();
     });
   });
 });
 
-function render() {
-  const domesticFields = document.getElementById("domesticFields");
-  const cleaningFields = document.getElementById("cleaningFields");
-  const officeFields = document.getElementById("officeFields");
-  const flatNote = document.getElementById("flatPriceNote");
-  const domesticNote = document.getElementById("domesticPriceNote");
-  const cleaningNote = document.getElementById("cleaningPriceNote");
-  const planCard = document.getElementById("planCard");
+/* ---------- Cleaning / flat notes ---------- */
+const FLAT_PRICING = {
+  "Administrative / Office Staff": "Recruitment fee: 6% of annual gross salary + 7.5% VAT",
+  "Other": "We'll confirm pricing with you once we understand the role."
+};
 
-  domesticFields.classList.toggle("show", DOMESTIC_TYPES.includes(state.staffType));
-  cleaningFields.classList.toggle("show", state.staffType === "Recurring Cleaning");
-  officeFields.classList.toggle("show", state.staffType === "Administrative / Office Staff");
-
-  const houseTypeFieldDomestic = document.getElementById("houseTypeFieldDomestic");
-  houseTypeFieldDomestic.classList.toggle("show", DOMESTIC_TYPES.includes(state.staffType) && state.arrangement === "Live-in");
-
-  if (DOMESTIC_TYPES.includes(state.staffType) && state.arrangement) {
-    domesticNote.textContent = priceNoteFor(state.staffType, state.arrangement);
-    domesticNote.classList.add("show");
-  } else {
-    domesticNote.classList.remove("show");
+function cleaningNote(freq, houseType) {
+  if (freq === "Monthly") {
+    return houseType === "Flat"
+      ? "₦85,000/month (8 visits) for flats."
+      : "Monthly rate is subject to assessment for this house structure.";
   }
-
-  if (state.paymentPlan && PAYMENT_PLANS[state.paymentPlan]) {
-    document.getElementById("planTitle").textContent = PAYMENT_PLANS[state.paymentPlan].label;
-    document.getElementById("planDesc").textContent = PAYMENT_PLANS[state.paymentPlan].desc;
-    planCard.classList.add("show");
-  } else {
-    planCard.classList.remove("show");
-  }
-
-  if (state.staffType === "Recurring Cleaning" && state.cleaningFrequency) {
-    cleaningNote.textContent = priceNoteFor(state.staffType, state.cleaningFrequency, state.houseType);
-    cleaningNote.classList.add("show");
-  } else {
-    cleaningNote.classList.remove("show");
-  }
-
-  if (state.staffType && !DOMESTIC_TYPES.includes(state.staffType) && state.staffType !== "Recurring Cleaning") {
-    const note = priceNoteFor(state.staffType);
-    if (note) { flatNote.textContent = note; flatNote.classList.add("show"); }
-  } else {
-    flatNote.classList.remove("show");
-  }
+  if (freq === "Daily") return "Daily rate is subject to assessment of the apartment.";
+  if (freq === "One-off") return "One-off cleaning — we'll confirm a quote based on house size and condition.";
+  return "";
 }
 
+/* ---------- Render ---------- */
+function show(id, on) { document.getElementById(id).classList.toggle("show", !!on); }
+
+let lastBandsKey = "";
+let lastPlan = "";
+
+function render() {
+  const t = state.staffType, a = state.arrangement;
+  const dom = DOMESTIC_TYPES.includes(t);
+
+  show("domesticFields", dom);
+  show("domesticContact", dom);
+  show("termsFields", dom);
+  show("nannyOnly", t === "Nanny");
+  show("dutiesNannyBox", t === "Nanny");
+  show("dutiesHouseBox", t === "House Assistant");
+  show("schoolSchedule", t === "Nanny" && state.schoolAttend === "Yes");
+  show("houseTypeFieldDomestic", dom && a === "Live-in");
+  show("accommodationField", dom && (a === "Live-in" || a === "Either"));
+  show("nannyPackageField", t === "Nanny" && a !== "Live-out");
+  show("cleaningFields", t === "Recurring Cleaning");
+  show("officeFields", t === "Administrative / Office Staff");
+  document.getElementById("budgetField").style.display = dom ? "none" : "block";
+
+  // salary bands (only rebuilt when type or arrangement changes, so open cards stay open)
+  const bandsKey = dom ? t + "|" + a : "";
+  if (bandsKey !== lastBandsKey) {
+    lastBandsKey = bandsKey;
+    const box = document.getElementById("bandsBox");
+    const info = dom ? bandsFor(t, a) : { bands: [], note: "" };
+    if (info.bands.length || info.note) {
+      let h = "";
+      if (info.bands.length) {
+        h += `<div class="guide-hint">Tap a package to see its duties.</div>`;
+        h += info.bands.map(b => `<details class="band"><summary><span class="band-title">${b.title}${b.sub ? `<small>${b.sub}</small>` : ""}</span><span class="band-salary">${b.salary}<small>per month</small></span></summary><ul>${b.duties.map(d => `<li>${d}</li>`).join("")}</ul></details>`).join("");
+      }
+      if (info.note) h += `<div class="price-note show">${info.note}</div>`;
+      h += `<div class="guide-note">${SALARY_NOTE}</div>`;
+      box.innerHTML = h;
+      box.classList.add("show");
+    } else {
+      box.innerHTML = "";
+      box.classList.remove("show");
+    }
+  }
+
+  // engagement plan card
+  if (state.paymentPlan !== lastPlan) {
+    lastPlan = state.paymentPlan;
+    const card = document.getElementById("planCard");
+    const p = PLANS[state.paymentPlan];
+    if (p) {
+      card.innerHTML = `<div class="plan-title">${p.label}</div><div class="plan-badge">${p.badge}</div><ul>${p.benefits.map(b => `<li>${b}</li>`).join("")}</ul><div class="plan-desc">${p.terms.map(x => `<p>${x}</p>`).join("")}</div>`;
+      card.classList.add("show");
+    } else {
+      card.innerHTML = "";
+      card.classList.remove("show");
+    }
+  }
+
+  // cleaning + flat price notes
+  const cn = document.getElementById("cleaningPriceNote");
+  const cText = t === "Recurring Cleaning" ? cleaningNote(state.cleaningFrequency, state.houseType) : "";
+  cn.textContent = cText;
+  cn.classList.toggle("show", !!cText);
+
+  const fn = document.getElementById("flatPriceNote");
+  const fText = (t && !dom && t !== "Recurring Cleaning") ? (FLAT_PRICING[t] || "") : "";
+  fn.textContent = fText;
+  fn.classList.toggle("show", !!fText);
+}
+
+/* ---------- Submit ---------- */
 const form = document.getElementById("requestForm");
 const errorBox = document.getElementById("errorBox");
 const submitBtn = document.getElementById("submitBtn");
+
+function showError(msg) {
+  errorBox.textContent = msg;
+  errorBox.classList.add("show");
+  errorBox.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function makeRef() {
+  const d = new Date();
+  const pad = n => String(n).padStart(2, "0");
+  return "SR-" + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
+}
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   errorBox.classList.remove("show");
 
   const fd = new FormData(form);
-  const fullName = fd.get("fullName")?.trim();
-  const phone = fd.get("phone")?.trim();
-  const location = fd.get("location")?.trim();
+  const g = (k) => (fd.get(k) || "").toString().trim();
+  const t = state.staffType, a = state.arrangement;
+  const dom = DOMESTIC_TYPES.includes(t);
+  const fullName = g("fullName"), phone = g("phone"), location = g("location");
 
-  if (!state.staffType || !fullName || !phone || !location) {
-    errorBox.textContent = "Please fill in staff type, your name, phone number, and location — the rest is optional.";
-    errorBox.classList.add("show");
-    return;
+  if (!t || !fullName || !phone || !location) {
+    return showError("Please fill in staff type, your name, phone number, and location — the rest is optional.");
   }
-  if (DOMESTIC_TYPES.includes(state.staffType) && !state.paymentPlan) {
-    errorBox.textContent = "Please choose a payment plan — Retainership or One-off.";
-    errorBox.classList.add("show");
-    return;
+  if (dom && !state.paymentPlan) {
+    return showError("Please choose an engagement option — Retainership or One-off.");
+  }
+  if (dom && !document.getElementById("termsAgree").checked) {
+    return showError("Please confirm that you have read and agree to the terms of engagement.");
   }
 
-  const payload = {
-    "Staff type": state.staffType,
-    "Arrangement": state.arrangement || "",
-    "Payment plan": state.paymentPlan ? PAYMENT_PLANS[state.paymentPlan].label : "",
-    "Age preference": state.ageRange || "",
-    "Language preference": fd.get("languagePref") || "",
-    "Tribe preference": fd.get("tribePref") || "",
-    "Religion preference": fd.get("religionPref") || "",
-    "Household size / children": fd.get("householdSize") || "",
-    "Special needs child": fd.get("specialNeeds") || "",
-    "House type (live-in)": state.houseTypeDomestic || "",
-    "Office address": fd.get("officeAddress") || "",
-    "Work days and hours": fd.get("workHours") || "",
-    "Gender preference (office)": state.genderPrefOffice || "",
-    "Tribe preference (office)": fd.get("tribePrefOffice") || "",
-    "Religion preference (office)": fd.get("religionPrefOffice") || "",
-    "Qualifications": fd.get("qualifications") || "",
-    "Provision of accommodation": state.accommodationOffice || "",
-    "House structure": state.houseType || "",
-    "Cleaning frequency": state.cleaningFrequency || "",
+  const ref = makeRef();
+  const when = new Date().toLocaleString("en-GB");
+
+  const p = {
+    "Reference": ref,
+    "Date submitted": when,
+    "Staff type": t,
     "Full name": fullName,
     "Phone": phone,
-    "Email": fd.get("email") || "",
+    "Email": g("email"),
     "Location": location,
-    "Number needed": fd.get("numStaff") || "",
-    "Preferred start date": fd.get("startDate") || "",
-    "Budget range": fd.get("budget") || "",
-    "Notes": fd.get("details") || "",
-    "_subject": "New Star Rays staffing request: " + state.staffType
+    "Number needed": g("numStaff"),
+    "Preferred start date": g("startDate")
   };
+
+  if (dom) {
+    const duties = (t === "Nanny" ? state.dutiesNanny : state.dutiesHouse).join(", ");
+    Object.assign(p, {
+      "Home address": g("homeAddress"),
+      "Preferred contact method": state.contactMethod || "",
+      "Arrangement": a,
+      "Package preferred": t === "Nanny" ? (state.nannyPackage || "") : "",
+      "Working days": g("workDays"),
+      "Working hours": g("workTime"),
+      "Number of children / household size": g("householdSize"),
+      "Age(s) of children": t === "Nanny" ? g("childAges") : "",
+      "Children attend school": t === "Nanny" ? (state.schoolAttend || "") : "",
+      "School schedule": (t === "Nanny" && state.schoolAttend === "Yes") ? g("schoolSchedule") : "",
+      "Medical conditions / special care needs": g("specialNeeds"),
+      "House type (live-in)": a === "Live-in" ? (state.houseTypeDomestic || "") : "",
+      "Duties required": duties,
+      "Other duties": g("otherDuties"),
+      "Preferred age range": state.ageRange,
+      "Languages required": g("languagePref"),
+      "Tribe / ethnic background preference": g("tribePref"),
+      "Religion preference": g("religionPref"),
+      "Minimum years of experience": g("minExperience"),
+      "Proposed monthly salary": g("proposedSalary"),
+      "Accommodation provided": (a === "Live-in" || a === "Either") ? (state.accommodationDomestic || "") : "",
+      "Other benefits": g("otherBenefits"),
+      "Engagement option": PLANS[state.paymentPlan].label,
+      "Terms accepted": "Yes — " + when
+    });
+  } else {
+    p["Budget / salary range"] = g("budget");
+  }
+
+  if (t === "Administrative / Office Staff") {
+    Object.assign(p, {
+      "Office address": g("officeAddress"),
+      "Work days and hours": g("workHours"),
+      "Gender preference": state.genderPrefOffice || "",
+      "Tribe preference": g("tribePrefOffice"),
+      "Religion preference": g("religionPrefOffice"),
+      "Qualifications": g("qualifications"),
+      "Provision of accommodation": state.accommodationOffice || ""
+    });
+  }
+
+  if (t === "Recurring Cleaning") {
+    Object.assign(p, {
+      "House structure": state.houseType,
+      "Cleaning frequency": state.cleaningFrequency
+    });
+  }
+
+  p["Notes"] = g("details");
+  p["_subject"] = "New Star Rays staffing request: " + t + " — " + fullName + " [" + ref + "]";
+
+  // drop empty answers so the email only shows what the client filled in
+  const payload = Object.fromEntries(Object.entries(p).filter(([k, v]) => v !== "" && v != null));
 
   submitBtn.disabled = true;
   submitBtn.textContent = "Submitting…";
@@ -453,14 +745,15 @@ form.addEventListener("submit", async (e) => {
       body: JSON.stringify(payload)
     });
     if (res.ok) {
+      document.getElementById("refNo").textContent = ref;
       form.style.display = "none";
       document.getElementById("confirmation").classList.add("show");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       throw new Error("Submission failed");
     }
   } catch (err) {
-    errorBox.textContent = "Something went wrong sending your request. Please try again, or contact us directly on 07032368163.";
-    errorBox.classList.add("show");
+    showError("Something went wrong sending your request. Please try again, or contact us directly on 07032368163.");
   } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = "Submit Request";
@@ -469,12 +762,16 @@ form.addEventListener("submit", async (e) => {
 
 document.getElementById("resetBtn").addEventListener("click", () => {
   form.reset();
-  Object.keys(state).forEach(k => state[k] = "");
+  Object.keys(state).forEach(k => { state[k] = Array.isArray(state[k]) ? [] : ""; });
   document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+  lastBandsKey = "x"; lastPlan = "x";
   render();
   document.getElementById("confirmation").classList.remove("show");
   form.style.display = "block";
+  window.scrollTo({ top: 0 });
 });
+
+render();
 </script>
 
 </body>
