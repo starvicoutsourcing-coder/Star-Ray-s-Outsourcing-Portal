@@ -91,10 +91,17 @@
     <div class="field">
       <label>Type of staff needed <span class="req">*</span></label>
       <div class="chip-row" data-group="staffType">
-        <button type="button" class="chip" data-value="House Help">House Help</button>
-        <button type="button" class="chip" data-value="Nanny">Nanny</button>
+        <button type="button" class="chip" data-value="Domestic Staff">Domestic Staff</button>
         <button type="button" class="chip" data-value="Administrative / Office Staff">Administrative / Office Staff</button>
         <button type="button" class="chip" data-value="Other">Other</button>
+      </div>
+    </div>
+
+    <div id="domesticRoleField" class="field hidden-section">
+      <label>Which domestic role do you need? <span class="req">*</span></label>
+      <div class="chip-row" data-group="domesticRole">
+        <button type="button" class="chip" data-value="House Help">House Help</button>
+        <button type="button" class="chip" data-value="Nanny">Nanny</button>
       </div>
     </div>
 
@@ -408,10 +415,9 @@
 
 <script>
 const FORM_ENDPOINT = "https://formspree.io/f/xaewkjbd";
-const DOMESTIC_TYPES = ["House Help", "Nanny"];
 
 const state = {
-  staffType: "", arrangement: "", paymentPlan: "", ageRange: "",
+  staffType: "", domesticRole: "", arrangement: "", paymentPlan: "", ageRange: "",
   houseTypeDomestic: "", contactMethod: [],
   dutiesNanny: [], dutiesHouse: []
 };
@@ -466,9 +472,9 @@ const PLANS = {
       "Full staff management"
     ],
     terms: [
-      "Valid for one (1) year from the date of engagement. Replacements are provided within 2–4 weeks.",
-      "Renewal: after the first year you may renew for another year at ₦80,000. Renewal covers one (1) staff replacement, and we continue to manage salary, complaints and all other matters relating to your staff.",
-      "If you do not renew: we will continue to manage your staff member for as long as they remain in the placement, but no replacement is covered. If the staff member leaves after the one-year period, you must renew before we place a new staff member. Every new staff member goes through guarantor verification and pre-employment medical tests.",
+      "Valid for one (1) year from the day the staff member resumes work. Replacements are provided within 2–4 weeks.",
+      "Renewal: after the first year you may renew for another year at ₦80,000. Renewal covers one (1) staff replacement, including the new staff member's guarantor verification and pre-employment medical tests, and we continue to manage salary, complaints and all other matters relating to your staff.",
+      "If you do not renew: we will continue to manage your staff member for as long as they remain in the placement, but no replacement is covered. If the staff member leaves after the one-year period, you must pay the ₦80,000 renewal fee before we place a new staff member.",
       "This plan applies to this staff request only. Further requests attract our standard fees, open to negotiation.",
       "Fees cover recruitment, screening and verification, and are non-refundable."
     ]
@@ -485,7 +491,7 @@ const PLANS = {
       "Salary paid directly by you"
     ],
     terms: [
-      "Placement coverage lasts three (3) months. A replacement, if needed, is provided within 2–4 weeks.",
+      "Placement coverage lasts three (3) months from the day the staff member resumes work. A replacement, if needed, is provided within 2–4 weeks.",
       "After placement, supervision and day-to-day management of the staff member is your responsibility.",
       "This plan applies to this staff request only.",
       "Fees cover recruitment, screening and verification, and are non-refundable."
@@ -525,28 +531,31 @@ let lastBandsKey = "";
 let lastPlan = "";
 
 function render() {
-  const t = state.staffType, a = state.arrangement;
-  const dom = DOMESTIC_TYPES.includes(t);
+  const sType = state.staffType, a = state.arrangement;
+  const dom = sType === "Domestic Staff";
+  const t = dom ? state.domesticRole : sType;   // the specific role (House Help / Nanny / Administrative / Other)
+  const domReady = dom && !!t;
 
-  show("domesticFields", dom);
-  show("domesticContact", dom);
-  show("termsFields", dom);
+  show("domesticRoleField", dom);
+  show("domesticFields", domReady);
+  show("domesticContact", domReady);
+  show("termsFields", domReady);
   show("nannyOnly", t === "Nanny");
   show("dutiesNannyBox", t === "Nanny");
   show("dutiesHouseBox", t === "House Help");
   show("schoolSchedule", t === "Nanny" && state.schoolAttend === "Yes");
-  show("houseTypeFieldDomestic", dom && a === "Live-in");
-  show("accommodationField", dom && (a === "Live-in" || a === "Either"));
+  show("houseTypeFieldDomestic", domReady && a === "Live-in");
+  show("accommodationField", domReady && (a === "Live-in" || a === "Either"));
   show("nannyPackageField", t === "Nanny" && a !== "Live-out");
-  show("officeFields", t === "Administrative / Office Staff");
+  show("officeFields", sType === "Administrative / Office Staff");
   document.getElementById("budgetField").style.display = dom ? "none" : "block";
 
   // salary bands (only rebuilt when type or arrangement changes, so open cards stay open)
-  const bandsKey = dom ? t + "|" + a : "";
+  const bandsKey = domReady ? t + "|" + a : "";
   if (bandsKey !== lastBandsKey) {
     lastBandsKey = bandsKey;
     const box = document.getElementById("bandsBox");
-    const info = dom ? bandsFor(t, a) : { bands: [], note: "" };
+    const info = domReady ? bandsFor(t, a) : { bands: [], note: "" };
     if (info.bands.length || info.note) {
       let h = "";
       if (info.bands.length) {
@@ -579,7 +588,7 @@ function render() {
 
   // price note for office staff / other
   const fn = document.getElementById("flatPriceNote");
-  const fText = (t && !dom) ? (FLAT_PRICING[t] || "") : "";
+  const fText = (sType && !dom) ? (FLAT_PRICING[sType] || "") : "";
   fn.textContent = fText;
   fn.classList.toggle("show", !!fText);
 }
@@ -607,12 +616,17 @@ form.addEventListener("submit", async (e) => {
 
   const fd = new FormData(form);
   const g = (k) => (fd.get(k) || "").toString().trim();
-  const t = state.staffType, a = state.arrangement;
-  const dom = DOMESTIC_TYPES.includes(t);
+  const sType = state.staffType, a = state.arrangement;
+  const dom = sType === "Domestic Staff";
+  const t = dom ? state.domesticRole : sType;
+  const typeLabel = dom ? "Domestic Staff – " + t : t;
   const fullName = g("fullName"), phone = g("phone"), location = g("location");
 
-  if (!t || !fullName || !phone || !location) {
+  if (!sType || !fullName || !phone || !location) {
     return showError("Please fill in staff type, your name, phone number, and location — the rest is optional.");
+  }
+  if (dom && !t) {
+    return showError("Please choose the domestic role you need — House Help or Nanny.");
   }
   if (dom && !state.paymentPlan) {
     return showError("Please choose an engagement option — Retainership or One-off.");
@@ -627,7 +641,7 @@ form.addEventListener("submit", async (e) => {
   const p = {
     "Reference": ref,
     "Date submitted": when,
-    "Staff type": t,
+    "Staff type": typeLabel,
     "Full name": fullName,
     "Phone": phone,
     "Email": g("email"),
@@ -681,7 +695,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   p["Notes"] = g("details");
-  p["_subject"] = "New Star Rays staffing request: " + t + " — " + fullName + " [" + ref + "]";
+  p["_subject"] = "New Star Rays staffing request: " + typeLabel + " — " + fullName + " [" + ref + "]";
 
   // drop empty answers so the email only shows what the client filled in
   const payload = Object.fromEntries(Object.entries(p).filter(([k, v]) => v !== "" && v != null));
