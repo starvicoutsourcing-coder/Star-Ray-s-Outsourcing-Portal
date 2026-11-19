@@ -91,10 +91,9 @@
     <div class="field">
       <label>Type of staff needed <span class="req">*</span></label>
       <div class="chip-row" data-group="staffType">
-        <button type="button" class="chip" data-value="House Assistant">House Assistant</button>
+        <button type="button" class="chip" data-value="House Help">House Help</button>
         <button type="button" class="chip" data-value="Nanny">Nanny</button>
         <button type="button" class="chip" data-value="Administrative / Office Staff">Administrative / Office Staff</button>
-        <button type="button" class="chip" data-value="Recurring Cleaning">Recurring Cleaning</button>
         <button type="button" class="chip" data-value="Other">Other</button>
       </div>
     </div>
@@ -127,8 +126,8 @@
         <input type="text" name="homeAddress" placeholder="e.g. 5 Admiralty Way, Lekki Phase 1" />
       </div>
       <div class="field">
-        <label>Preferred method of contact</label>
-        <div class="chip-row" data-group="contactMethod">
+        <label>Preferred method(s) of contact (select all that apply)</label>
+        <div class="chip-row" data-group="contactMethod" data-multi="true">
           <button type="button" class="chip" data-value="Phone Call">Phone Call</button>
           <button type="button" class="chip" data-value="WhatsApp">WhatsApp</button>
           <button type="button" class="chip" data-value="Email">Email</button>
@@ -147,7 +146,7 @@
       </div>
     </div>
 
-    <!-- ========== Domestic (House Assistant / Nanny) ========== -->
+    <!-- ========== Domestic (House Help / Nanny) ========== -->
     <div id="domesticFields" class="hidden-section">
 
       <div class="section-title">Work arrangement &amp; salary guide</div>
@@ -309,7 +308,7 @@
 
       <div class="notice">
         <b>Days off</b>
-        Mature staff are entitled to 4 days off in a month. Younger live-in help are entitled to 3 days off in a month, preferably at the end of the month.
+        Staff are entitled to 3 days off at the end of each month.
       </div>
     </div>
 
@@ -351,30 +350,6 @@
           <button type="button" class="chip" data-value="No">No</button>
         </div>
       </div>
-    </div>
-
-    <!-- ========== Cleaning ========== -->
-    <div id="cleaningFields" class="hidden-section">
-      <div class="section-title">Cleaning details</div>
-      <div class="field">
-        <label>House structure</label>
-        <div class="chip-row" data-group="houseType">
-          <button type="button" class="chip" data-value="Flat">Flat</button>
-          <button type="button" class="chip" data-value="Bungalow">Bungalow</button>
-          <button type="button" class="chip" data-value="Duplex">Duplex</button>
-          <button type="button" class="chip" data-value="Terrace">Terrace</button>
-          <button type="button" class="chip" data-value="Other">Other</button>
-        </div>
-      </div>
-      <div class="field">
-        <label>Cleaning frequency</label>
-        <div class="chip-row" data-group="cleaningFrequency">
-          <button type="button" class="chip" data-value="Monthly">Monthly</button>
-          <button type="button" class="chip" data-value="Daily">Daily</button>
-          <button type="button" class="chip" data-value="One-off">One-off</button>
-        </div>
-      </div>
-      <div id="cleaningPriceNote" class="price-note"></div>
     </div>
 
     <div id="flatPriceNote" class="price-note"></div>
@@ -433,20 +408,21 @@
 
 <script>
 const FORM_ENDPOINT = "https://formspree.io/f/xaewkjbd";
-const DOMESTIC_TYPES = ["House Assistant", "Nanny"];
+const DOMESTIC_TYPES = ["House Help", "Nanny"];
 
 const state = {
   staffType: "", arrangement: "", paymentPlan: "", ageRange: "",
-  houseType: "", cleaningFrequency: "", houseTypeDomestic: "",
+  houseTypeDomestic: "", contactMethod: [],
   dutiesNanny: [], dutiesHouse: []
 };
 
 /* ---------- Salary bands (from the Monthly Salary Bands card) ---------- */
+const HOUSE_DUTIES = ["General household cleaning", "Laundry and ironing", "Washing dishes", "Tidying and maintaining the home", "General household assistance"];
+const HOUSE_DEPENDS = "Depends on the number of children and household activities";
 const BANDS = {
-  houseIn: {
-    title: "Basic Live-in House Help", sub: "1–2 children (if any)", salary: "₦90,000 – ₦120,000",
-    duties: ["General household cleaning", "Laundry and ironing", "Washing dishes", "Tidying and maintaining the home", "General household assistance"]
-  },
+  houseIn1825: { title: "Live-in House Help", sub: "Ages 18–25 · " + HOUSE_DEPENDS, salary: "₦80,000 – ₦120,000", duties: HOUSE_DUTIES },
+  houseIn2645: { title: "Live-in House Help", sub: "Ages 26–45 · " + HOUSE_DEPENDS, salary: "₦120,000 – ₦150,000", duties: HOUSE_DUTIES },
+  houseOut: { title: "Live-out House Help", sub: HOUSE_DEPENDS, salary: "₦120,000 – ₦150,000", duties: HOUSE_DUTIES },
   nannyBasic: {
     title: "Basic Nanny", sub: "1–2 children", salary: "₦120,000 – ₦150,000",
     duties: ["Child supervision and safety", "Feeding and meal preparation for the children", "Bathing and dressing", "School preparation and school runs", "Keeping children's rooms and play areas tidy", "Light household assistance"]
@@ -461,13 +437,12 @@ const BANDS = {
   }
 };
 const SALARY_NOTE = "Salaries are a guide. The final rate depends on the duties, number of children, working hours and location. The one-time processing fee is separate from the monthly salary.";
-const LIVE_OUT_HOUSE_NOTE = "Live-out House Assistant: ₦100,000/month and above — includes a transport allowance.";
 
 function bandsFor(type, arr) {
-  if (type === "House Assistant") {
-    if (arr === "Live-in") return { bands: [BANDS.houseIn], note: "" };
-    if (arr === "Live-out") return { bands: [], note: LIVE_OUT_HOUSE_NOTE };
-    if (arr === "Either") return { bands: [BANDS.houseIn], note: LIVE_OUT_HOUSE_NOTE };
+  if (type === "House Help") {
+    if (arr === "Live-in") return { bands: [BANDS.houseIn1825, BANDS.houseIn2645], note: "" };
+    if (arr === "Live-out") return { bands: [BANDS.houseOut], note: "" };
+    if (arr === "Either") return { bands: [BANDS.houseIn1825, BANDS.houseIn2645, BANDS.houseOut], note: "" };
   }
   if (type === "Nanny") {
     if (arr === "Live-in") return { bands: [BANDS.nannyBasic, BANDS.nannyFull], note: "" };
@@ -493,7 +468,7 @@ const PLANS = {
     terms: [
       "Valid for one (1) year from the date of engagement. Replacements are provided within 2–4 weeks.",
       "Renewal: after the first year you may renew for another year at ₦80,000. Renewal covers one (1) staff replacement, and we continue to manage salary, complaints and all other matters relating to your staff.",
-      "Non-renewal: if you do not renew, we no longer manage the staff member and are not responsible for any staff change or replacement until the retainership is renewed.",
+      "If you do not renew: we will continue to manage your staff member for as long as they remain in the placement, but no replacement is covered. If the staff member leaves after the one-year period, you must renew before we place a new staff member. Every new staff member goes through guarantor verification and pre-employment medical tests.",
       "This plan applies to this staff request only. Further requests attract our standard fees, open to negotiation.",
       "Fees cover recruitment, screening and verification, and are non-refundable."
     ]
@@ -537,22 +512,11 @@ document.querySelectorAll(".chip-row").forEach(row => {
   });
 });
 
-/* ---------- Cleaning / flat notes ---------- */
+/* ---------- Pricing notes for other roles ---------- */
 const FLAT_PRICING = {
   "Administrative / Office Staff": "Recruitment fee: 6% of annual gross salary + 7.5% VAT",
   "Other": "We'll confirm pricing with you once we understand the role."
 };
-
-function cleaningNote(freq, houseType) {
-  if (freq === "Monthly") {
-    return houseType === "Flat"
-      ? "₦85,000/month (8 visits) for flats."
-      : "Monthly rate is subject to assessment for this house structure.";
-  }
-  if (freq === "Daily") return "Daily rate is subject to assessment of the apartment.";
-  if (freq === "One-off") return "One-off cleaning — we'll confirm a quote based on house size and condition.";
-  return "";
-}
 
 /* ---------- Render ---------- */
 function show(id, on) { document.getElementById(id).classList.toggle("show", !!on); }
@@ -569,12 +533,11 @@ function render() {
   show("termsFields", dom);
   show("nannyOnly", t === "Nanny");
   show("dutiesNannyBox", t === "Nanny");
-  show("dutiesHouseBox", t === "House Assistant");
+  show("dutiesHouseBox", t === "House Help");
   show("schoolSchedule", t === "Nanny" && state.schoolAttend === "Yes");
   show("houseTypeFieldDomestic", dom && a === "Live-in");
   show("accommodationField", dom && (a === "Live-in" || a === "Either"));
   show("nannyPackageField", t === "Nanny" && a !== "Live-out");
-  show("cleaningFields", t === "Recurring Cleaning");
   show("officeFields", t === "Administrative / Office Staff");
   document.getElementById("budgetField").style.display = dom ? "none" : "block";
 
@@ -614,14 +577,9 @@ function render() {
     }
   }
 
-  // cleaning + flat price notes
-  const cn = document.getElementById("cleaningPriceNote");
-  const cText = t === "Recurring Cleaning" ? cleaningNote(state.cleaningFrequency, state.houseType) : "";
-  cn.textContent = cText;
-  cn.classList.toggle("show", !!cText);
-
+  // price note for office staff / other
   const fn = document.getElementById("flatPriceNote");
-  const fText = (t && !dom && t !== "Recurring Cleaning") ? (FLAT_PRICING[t] || "") : "";
+  const fText = (t && !dom) ? (FLAT_PRICING[t] || "") : "";
   fn.textContent = fText;
   fn.classList.toggle("show", !!fText);
 }
@@ -682,7 +640,7 @@ form.addEventListener("submit", async (e) => {
     const duties = (t === "Nanny" ? state.dutiesNanny : state.dutiesHouse).join(", ");
     Object.assign(p, {
       "Home address": g("homeAddress"),
-      "Preferred contact method": state.contactMethod || "",
+      "Preferred contact method": state.contactMethod.join(", "),
       "Arrangement": a,
       "Package preferred": t === "Nanny" ? (state.nannyPackage || "") : "",
       "Working days": g("workDays"),
@@ -719,13 +677,6 @@ form.addEventListener("submit", async (e) => {
       "Religion preference": g("religionPrefOffice"),
       "Qualifications": g("qualifications"),
       "Provision of accommodation": state.accommodationOffice || ""
-    });
-  }
-
-  if (t === "Recurring Cleaning") {
-    Object.assign(p, {
-      "House structure": state.houseType,
-      "Cleaning frequency": state.cleaningFrequency
     });
   }
 
